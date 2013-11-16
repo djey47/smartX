@@ -1,5 +1,7 @@
 # disk_details.rb - represents basic information about one disk.
 
+require 'json'
+
 class DiskDetails
 
   attr_reader :id
@@ -16,5 +18,16 @@ class DiskDetails
     @temperature_celsius = temperature_celsius
     @smart_status = smart_status
     @smartx_status = smartx_status
+  end
+
+  def to_json(*a)
+    {
+        :id => @id,
+        :model => @model,
+        :size => @size,
+        :temperature_celsius => @temperature_celsius,
+        :smart_status => @smart_status,
+        :smartx_status => @smartx_status
+    }.to_json(*a)
   end
 end

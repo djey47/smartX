@@ -1,5 +1,7 @@
 # smart-item.rb - Represents 1 SMART info item.
 
+require 'json'
+
 class SmartItem
 
   attr_reader :id
@@ -18,5 +20,17 @@ class SmartItem
     @threshold = threshold
     @status = status
     @raw_data = raw_data
+  end
+
+  def to_json(*a)
+    {
+        :id => @id,
+        :worst => @worst,
+        :value => @value,
+        :threshold => @threshold,
+        :label => @label,
+        :raw_data => @raw_data,
+        :status => @status
+    }.to_json(*a)
   end
 end
