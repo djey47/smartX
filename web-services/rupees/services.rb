@@ -61,7 +61,7 @@ class Services < Sinatra::Base
   end
 
   #Returns list of disks
-  get '/disks' do
+  get '/disks.json' do
     begin
       content_type :json
       [200, handle_json_result(get_disks.to_json, params)]
@@ -72,7 +72,7 @@ class Services < Sinatra::Base
   end
 
   #Returns SMART details for one disk
-  get '/smart/:disk_id' do
+  get '/smart.json/:disk_id' do
     begin
       smart_info = get_smart_details(params[:disk_id].to_i)
       json = smart_info.to_json

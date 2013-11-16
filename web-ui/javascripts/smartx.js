@@ -1,3 +1,4 @@
+$(function () {
 //window.onload = setupRefresh;
 //
 //function setupRefresh() {
@@ -6,3 +7,18 @@
 //function refreshPage() {
 //    window.location = location.href;
 //}
+
+
+    var getDisks = function () {
+
+        $.ajax()
+
+    };
+
+    var getSmart = function (diskId) {
+
+    }
+
+
+
+});

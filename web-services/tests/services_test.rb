@@ -15,7 +15,7 @@ class ServicesTest  < Test::Unit::TestCase
   end
 
   def test_disks_should_return_array_and_http_200
-    get '/disks'
+    get '/disks.json'
 
     opts = {:symbolize_names => true}
     parsed_object = JSON.parse(last_response.body, opts)
@@ -24,7 +24,7 @@ class ServicesTest  < Test::Unit::TestCase
   end
 
   def test_smart_unknown_disk_should_return_http_404
-    get '/smart/0'
+    get '/smart.json/0'
 
     assert_equal(404, last_response.status)
   end
