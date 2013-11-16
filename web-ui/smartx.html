@@ -7,14 +7,175 @@
 
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="stylesheets/smartx.css" rel="stylesheet">
 
-    <!--<link rel="shortcut icon" type="image/png" href="@{'/public/img/favicon.png'}">-->
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
-    <script src="lib/jquery-2.0.3.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <title>smartX</title>
 </head>
 <body>
-    <span class="label label-info">smartX: S.M.A.R.T. information from ESXi host</span>
+<div class="container">
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">smartX</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <!--<li class="dropdown">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">Action</a></li>-->
+                        <!--<li><a href="#">Another action</a></li>-->
+                        <!--<li><a href="#">Something else here</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li class="dropdown-header">Nav header</li>-->
+                        <!--<li><a href="#">Separated link</a></li>-->
+                        <!--<li><a href="#">One more separated link</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            </ul>
+            <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--</ul>-->
+        </div><!--/.nav-collapse -->
+    </div>
+
+    <!-- Main component -->
+    <div class="container">
+        <h3><span class="label label-primary">S.M.A.R.T. information from ESXi</span></h3>
+        <p>
+                <span><em>Last received $TIME ago.</em></span>
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Model</th>
+                    <th>Disk size</th>
+                    <th>Temperature</th>
+                    <th>S.M.A.R.T. status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr onclick="$('#smartPopup').modal('show')">
+                    <td>1</td>
+                    <td>ST3000VN000</td>
+                    <td>2794.52 Go</td>
+                    <td>25°C / 77°F</td>
+                    <td>OK</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>ST3000VN000</td>
+                    <td>2794.52 Go</td>
+                    <td>27°C / 79°F</td>
+                    <td>OK</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>ST2000DL003</td>
+                    <td>1863.02 Go</td>
+                    <td>27°C / 79°F</td>
+                    <td>OK</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>ST2000DL003</td>
+                    <td>1863.02 Go</td>
+                    <td>27°C / 79°F</td>
+                    <td>OK</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SMART details popup -->
+    <div class="modal fade" id="smartPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">S.M.A.R.T details</h4>
+                </div>
+
+                <div class="modal-body">
+                   <span class="label label-info">Disk: $DISKMODEL</span>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Attribute</th>
+                                <th>Value</th>
+                                <th>Worst</th>
+                                <th>Threshold</th>
+                                <th>Status</th>
+                                <th>RAW data</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Spin Up Time</td>
+                                <td>45</td>
+                                <td>40</td>
+                                <td>500</td>
+                                <td><label class="label label-success">OK</label></td>
+                                <td>45</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Spin Up Time</td>
+                                <td>45</td>
+                                <td>40</td>
+                                <td>500</td>
+                                <td><label class="label label-danger">KO</label></td>
+                                <td>45</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Spin Up Time</td>
+                                <td>45</td>
+                                <td>40</td>
+                                <td>500</td>
+                                <td><label class="label label-warning">!</label></td>
+                                <td>45</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal --></div>
+
+
+<!-- Templates -->
+<script id="aboutTemplate" type="template/javascript">
+
+</script>
+
+<!-- Scripting -->
+<script src="lib/jquery-2.0.3.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="javascripts/smartx.js"></script>
+
 </body>
 </html>
-
