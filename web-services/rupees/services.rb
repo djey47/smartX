@@ -1,4 +1,4 @@
-# services.rb - web server
+# services.rb - REST http server
 
 require 'sinatra/base'
 require 'logger'
@@ -16,4 +16,9 @@ class Services < Sinatra::Base
   set :environment, :development
   set :show_exceptions, true
 
+  #Heartbeat
+  get '/' do
+    @logger.info('[Services] Heartbeat!')
+    [200, 'SmartX - webservices are alive :)']
+  end
 end
