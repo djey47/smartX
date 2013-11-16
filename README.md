@@ -15,15 +15,15 @@ Ruby dependencies:
 ------------------
 (core 2.0.0-p247)
 
-- rack
+- rack v1.5.2
 
-- rack-protection
+- rack-protection v1.5.0
 
-- rack-test
+- rack-test v0.6.2
 
-- sinatra
+- sinatra v1.4.4
 
-- test-unit
+- test-unit v2.5.5
 
-- tilt
+- tilt v1.4.1
 
