@@ -1,13 +1,14 @@
+//noinspection JSUnresolvedVariable,JSUnresolvedFunction
 var diskListViewModel = {
 
-    // Attributes
+    //noinspection JSUnresolvedVariable,JSUnresolvedFunction
     lastReceived: ko.observable(''),
 
-    disks: ko.observableArray(new Array()),
+    disks: ko.observableArray([]),
 
-    // Methods
     fetch: function() {
         $.getJSON("http://localhost:4600/disks.json", function(data) {
+            /** @namespace data.last_received */
             diskListViewModel.lastReceived(data.last_received);
 
             $.each(data.disks, function(index, disk){
@@ -16,11 +17,13 @@ var diskListViewModel = {
         })
     },
 
+    // Called from binding: click
     showSmartDetails: function() {
         $("#smartPopup").modal("show");
     }
 };
 
+//noinspection JSUnresolvedVariable,JSUnresolvedFunction
 ko.applyBindings(diskListViewModel);
 
 // TODO refresh automatically
