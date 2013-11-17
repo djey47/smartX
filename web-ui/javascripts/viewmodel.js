@@ -45,5 +45,5 @@ ko.applyBindings(diskListViewModel, $("#mainPage")[0]);
 //noinspection JSUnresolvedVariable,JSUnresolvedFunction
 ko.applyBindings(smartDetailsViewModel, $("#smartPopup")[0]);
 
-// TODO refresh automatically
-diskListViewModel.fetch();
+// To refresh automatically
+invokeAndRepeat(diskListViewModel.fetch, REFRESH_INTERVAL_SECS * 1000);
