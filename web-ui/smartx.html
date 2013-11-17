@@ -49,7 +49,7 @@
     </div>
 
     <!-- Main component -->
-    <div class="container">
+    <div id="mainPage" class="container">
         <h3><span class="label label-primary">S.M.A.R.T. information from ESXi</span></h3>
         <p>
             <em>
@@ -98,7 +98,9 @@
                 </div>
 
                 <div class="modal-body">
-                   <span class="label label-info">Disk: $DISKMODEL</span>
+                   <span class="label label-info">
+                       Disk: (<span data-bind="text: currentDisk().id"></span>)&nbsp;<span data-bind="text: currentDisk().model"></span>
+                   </span>
 
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -113,33 +115,15 @@
                                 <th>RAW data</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody data-bind="foreach: items">
                             <tr>
-                                <td>1</td>
-                                <td>Spin Up Time</td>
-                                <td>45</td>
-                                <td>40</td>
-                                <td>500</td>
-                                <td><label class="label label-success">OK</label></td>
-                                <td>45</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Spin Up Time</td>
-                                <td>45</td>
-                                <td>40</td>
-                                <td>500</td>
-                                <td><label class="label label-danger">KO</label></td>
-                                <td>45</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Spin Up Time</td>
-                                <td>45</td>
-                                <td>40</td>
-                                <td>500</td>
-                                <td><label class="label label-warning">!</label></td>
-                                <td>45</td>
+                                <td data-bind="text: id"></td>
+                                <td data-bind="text: label"></td>
+                                <td data-bind="text: value"></td>
+                                <td data-bind="text: worst"></td>
+                                <td data-bind="text: threshold"></td>
+                                <td><span class="label label-success" data-bind="text: status"></span></td>
+                                <td data-bind="text: raw_data"></td>
                             </tr>
                           </tbody>
                         </table>
@@ -152,7 +136,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal --></div>
-
 
 <!-- Templates -->
 <script id="aboutTemplate" type="template/javascript">
