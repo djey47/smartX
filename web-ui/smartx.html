@@ -52,10 +52,14 @@
     <div class="container">
         <h3><span class="label label-primary">S.M.A.R.T. information from ESXi</span></h3>
         <p>
-                <span><em>
-                    <span data-bind="visible: lastReceived == ''">There's no data, yet.</span>
-                    <span data-bind="visible: lastReceived != ''">Last received <span data-bind="text: lastReceived"></span> ago.</span>
-                </em></span>
+            <em>
+                <span data-bind="visible: lastReceived() == ''">
+                    There's no data, yet.
+                </span>
+                <span data-bind="visible: lastReceived() != ''">
+                    Last received <span data-bind="text: lastReceived()"></span> ago.
+                </span>
+            </em>
         </p>
 
         <div class="table-responsive">
