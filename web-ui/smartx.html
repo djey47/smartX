@@ -71,36 +71,17 @@
                     <th>Disk size</th>
                     <th>Temperature</th>
                     <th>S.M.A.R.T. status</th>
+                    <th>smartX status</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr onclick="$('#smartPopup').modal('show')">
-                    <td>1</td>
-                    <td>ST3000VN000</td>
-                    <td>2794.52 Go</td>
-                    <td>25°C / 77°F</td>
-                    <td>OK</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>ST3000VN000</td>
-                    <td>2794.52 Go</td>
-                    <td>27°C / 79°F</td>
-                    <td>OK</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>ST2000DL003</td>
-                    <td>1863.02 Go</td>
-                    <td>27°C / 79°F</td>
-                    <td>OK</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>ST2000DL003</td>
-                    <td>1863.02 Go</td>
-                    <td>27°C / 79°F</td>
-                    <td>OK</td>
+                <tbody data-bind="foreach: disks">
+                <tr data-bind="click: diskListViewModel.showSmartDetails">
+                    <td data-bind="text: id"></td>
+                    <td data-bind="text: model"></td>
+                    <td data-bind="text: size_gigabytes"></td>
+                    <td data-bind="text: temperature_celsius"></td>
+                    <td data-bind="text: smart_status"></td>
+                    <td data-bind="text: smartx_status"></td>
                 </tr>
                 </tbody>
             </table>
