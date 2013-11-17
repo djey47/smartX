@@ -14,12 +14,13 @@ class ServicesTest  < Test::Unit::TestCase
     Services
   end
 
-  def test_disks_should_return_array_and_http_200
+  def test_disks_should_return_http_200
     get '/disks.json'
 
     opts = {:symbolize_names => true}
     parsed_object = JSON.parse(last_response.body, opts)
-    assert_true(parsed_object.is_a? Array)
+    assert_true(parsed_object[:last_received].is_a? String)
+    assert_true(parsed_object[:disks].is_a? Array)
     assert_equal(200, last_response.status)
   end
 

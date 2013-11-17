@@ -27,6 +27,7 @@ class Services < Sinatra::Base
     disk_list.disks << DiskDetails.new(1, 'ST3000VN000', 2794.52, 25, 'OK', 'Good' )
     disk_list.disks << DiskDetails.new(2, 'ST2000DL003', 1863.02, 27, 'OK', 'Bad' )
     disk_list.disks << DiskDetails.new(3, 'ST2000DL003', 1863.02, 26, 'KO', 'Critical' )
+    disk_list
   end
 
   def get_smart_details(disk_id)

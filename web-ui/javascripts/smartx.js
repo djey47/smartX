@@ -11,7 +11,7 @@ $(function () {
 
     var getDisks = function () {
 
-        $.ajax()
+        $.aj    ax()
 
     };
 
