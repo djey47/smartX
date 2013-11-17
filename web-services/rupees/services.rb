@@ -42,6 +42,7 @@ class Services < Sinatra::Base
     details.items << SmartItem.new(1, 'Read Error Rate', 15, 20, 50, 'OK', '0xF')
     details.items << SmartItem.new(2, 'Throughput Performance', 95, 95, 25, 'OK', '0x5F')
     details.items << SmartItem.new(3, 'Spin-Up Time', 10, 10, 5, 'KO', '0xA')
+    details
   end
 
   def check_origin
