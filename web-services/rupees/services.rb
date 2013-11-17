@@ -21,6 +21,8 @@ class Services < Sinatra::Base
   def get_disks
     @logger.info('[Services][disks]')
 
+    check_origin
+
     # Fake data
     disk_list = DiskList.new
     disk_list.last_received = '1 year'
@@ -42,7 +44,19 @@ class Services < Sinatra::Base
     details.items << SmartItem.new(3, 'Spin-Up Time', 10, 10, 5, 'KO', '0xA')
   end
 
+  def check_origin
+    allowed_origins = %w(http://localhost:8080 http://coolstories.servebeer.com:4600)
+    origin = request.env['HTTP_ORIGIN']
+
+    if allowed_origins.include?(origin)
+      response['Access-Control-Allow-Origin'] = origin
+    else
+      @logger.warn("[Services] Access denied to origin #{origin}.")
+    end
+  end
+
   def handle_json_result(json, params)
+    check_origin
     if params[:jsonp_callback]
       "#{params[:jsonp_callback]}(#{json})"
     else
