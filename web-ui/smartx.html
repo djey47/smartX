@@ -78,8 +78,10 @@
                 <tr data-bind="click: diskListViewModel.showSmartDetails">
                     <td data-bind="text: id"></td>
                     <td data-bind="text: model"></td>
-                    <td data-bind="text: size_gigabytes"></td>
-                    <td data-bind="text: temperature_celsius"></td>
+                    <td><span data-bind="text: size_gigabytes"></span>&nbsp;Gb</td>
+                    <td>
+                        <span data-bind="text: temperature_celsius"></span>°C&nbsp;/&nbsp;<span data-bind="text: diskListViewModel.temperature_fahrenheit($data.temperature_celsius)"></span>°F
+                    </td>
                     <td data-bind="text: smart_status"></td>
                     <td data-bind="text: smartx_status"></td>
                 </tr>

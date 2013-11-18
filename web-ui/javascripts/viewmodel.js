@@ -22,9 +22,20 @@ var diskListViewModel = {
         smartDetailsViewModel.currentDisk(disk);
         smartDetailsViewModel.fetch();
         $("#smartPopup").modal("show");
+    },
+
+    // Called from binding: computed
+    temperature_fahrenheit: function (tempCelsius) {
+        //noinspection JSUnresolvedFunction,JSUnresolvedVariable
+        return ko.computed({
+            read: function () {
+                return celsiusToFahrenheit(tempCelsius);
+            }
+        }, this);
     }
 };
 
+//noinspection JSUnresolvedFunction,JSUnresolvedVariable
 var smartDetailsViewModel = {
     currentDisk: ko.observable({model: ''}),
 
