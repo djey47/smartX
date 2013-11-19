@@ -8,8 +8,11 @@ Modules:
 - smart-client : set of unix shell scripts and configuration to get S.M.A.R.T. information from ESXi system.
 
 - web-services : REST web services to collect and provide S.M.A.R.T. information.
+To start from command line, execute:
+**ruby ./web-services/rupees/smart_x.rb**
 
-- web-ui : front-end to display understable and usable information about HDD status.
+- web-ui : front-end to display usable and useful information about HDD status.
+To be deployed on a web server : developed and tested under classic apache server.
 
 Ruby dependencies:
 ------------------
