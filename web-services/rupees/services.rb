@@ -52,7 +52,7 @@ class Services < Sinatra::Base
     if allowed_origins.include?(origin)
       response['Access-Control-Allow-Origin'] = origin
     else
-      @logger.warn("[Services] Access denied to origin #{origin}.")
+      @logger.warn("[Services] Unknown origin '#{origin}'.")
     end
   end
 
