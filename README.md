@@ -8,6 +8,7 @@ Modules:
 - smart-client : set of unix shell scripts and configuration to get S.M.A.R.T. information from ESXi system.
 
 - web-services : REST web services to collect and provide S.M.A.R.T. information.
+Current TCP port is 4600.
 To start from command line, execute:
 **ruby ./web-services/rupees/smart_x.rb**
 
