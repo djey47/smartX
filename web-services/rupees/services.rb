@@ -1,6 +1,6 @@
 # services.rb - REST http server
 
-require 'sinatra/base'
+require 'sinatra'
 require 'json'
 require 'logger'
 require_relative 'model/disk_list'
