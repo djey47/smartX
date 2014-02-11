@@ -8,8 +8,12 @@ Modules:
 --------
 - web-services : REST web services to provide S.M.A.R.T. information.
 Current TCP port is 4600.
+
 To start from command line, execute:
 **ruby ./web-services/rupees/smart_x.rb**
+
+To test services, execute :
+**ruby ./web-services/tests/services_test.rb**
 
 - web-ui : front-end to display usable and useful information about HDD status.
 To be deployed on a web server : developed and tested under classic apache server.
