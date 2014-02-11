@@ -46,7 +46,7 @@ class Services < Sinatra::Base
   end
 
   def check_origin
-    allowed_origins = %w(http://localhost:8080 http://coolstories.servebeer.com:4600)
+    allowed_origins = %w(http://localhost:8080 http://localhost)
     origin = request.env['HTTP_ORIGIN']
 
     if allowed_origins.include?(origin)
