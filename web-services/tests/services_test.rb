@@ -17,16 +17,35 @@ class ServicesTest  < Test::Unit::TestCase
   def test_disks_should_return_http_200
     get '/disks.json'
 
+    assert_equal(200, last_response.status)
+  end
+
+  def test_disks_should_return_proper_json
+    get '/disks.json'
+
     opts = {:symbolize_names => true}
     parsed_object = JSON.parse(last_response.body, opts)
-    assert_true(parsed_object[:last_received].is_a? String)
-    assert_true(parsed_object[:disks].is_a? Array)
-    assert_equal(200, last_response.status)
+    assert(parsed_object[:last_received].is_a? String)
+    assert(parsed_object[:disks].is_a? Array)
   end
 
   def test_smart_unknown_disk_should_return_http_404
     get '/smart.json/0'
 
     assert_equal(404, last_response.status)
+  end
+
+  def test_smart_should_return_http_200
+    get '/smart.json/1'
+
+    assert_equal(200, last_response.status)
+  end
+
+  def test_smart_should_return_proper_json
+    get '/smart.json/1'
+
+    opts = {:symbolize_names => true}
+    parsed_object = JSON.parse(last_response.body, opts)
+    assert(parsed_object[:items].is_a? Array)
   end
 end
