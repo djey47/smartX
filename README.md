@@ -30,5 +30,20 @@ Ruby dependencies:
   - rack-protection v1.5.0
 - test-unit v2.5.5
 
+Front web server (development)
+------------------------------
+(nginx 1.5.10)
+
+Host configuration is as follows :
+**root   /path/to/project/web-ui;
+**location / {
+    index  smartx.html;
+}**
+
+To run server, execute following command :
+**nginx**
+
+Then, send signals to handle it :
+**nginx -s {stop|quit|reload|reopen}**
 
 
