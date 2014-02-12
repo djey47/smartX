@@ -4,6 +4,10 @@ smartX
 Displays HDD's S.M.A.R.T. information from Synology DSM systems.
 In cases of virtualized environments, S.M.A.R.T information cannot be processed due to missing features in drivers; this project aims at solving this.
 
+Side note: application parses following Linux command outputs to get information :
+- hdparm -I /dev/sd?
+- smartctl <to be defined>
+
 Modules:
 --------
 - web-services : REST web services to provide S.M.A.R.T. information.
