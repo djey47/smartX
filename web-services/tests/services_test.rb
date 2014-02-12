@@ -10,8 +10,14 @@ require 'json'
 class ServicesTest  < MiniTest::Test
   include Rack::Test::Methods
 
+  # Required to provide tested application instance
   def app
     Services
+  end
+
+  # Runs before each test
+  def setup
+    @json_parser_opts = {:symbolize_names => true}
   end
 
   def test_heartbeat_should_return_http_200
@@ -29,8 +35,7 @@ class ServicesTest  < MiniTest::Test
   def test_disks_should_return_proper_json
     get '/disks.json'
 
-    opts = {:symbolize_names => true}
-    parsed_object = JSON.parse(last_response.body, opts)
+    parsed_object = JSON.parse(last_response.body, @json_parser_opts)
     assert(parsed_object[:last_received].is_a? String)
     assert(parsed_object[:disks].is_a? Array)
   end
@@ -50,8 +55,7 @@ class ServicesTest  < MiniTest::Test
   def test_smart_should_return_proper_json
     get '/smart.json/1'
 
-    opts = {:symbolize_names => true}
-    parsed_object = JSON.parse(last_response.body, opts)
+    parsed_object = JSON.parse(last_response.body, @json_parser_opts)
     assert(parsed_object[:items].is_a? Array)
   end
 end
