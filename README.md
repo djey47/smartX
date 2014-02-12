@@ -16,7 +16,7 @@ To test services, execute :
 **ruby ./web-services/tests/services_test.rb**
 
 - web-ui : front-end to display usable and useful information about HDD status.
-To be deployed on a web server : developed and tested under classic apache server.
+To be deployed on a web server : developed under nginx, deployed under apache.
 
 Ruby dependencies:
 ------------------
