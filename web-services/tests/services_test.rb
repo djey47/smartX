@@ -4,14 +4,20 @@ ENV['RACK_ENV'] = 'test'
 
 require_relative '../rupees/services'
 require 'rack/test'
-require 'test/unit'
+require 'minitest/autorun'
 require 'json'
 
-class ServicesTest  < Test::Unit::TestCase
+class ServicesTest  < MiniTest::Test
   include Rack::Test::Methods
 
   def app
     Services
+  end
+
+  def test_heartbeat_should_return_http_200
+    get '/'
+
+    assert_equal(200, last_response.status)
   end
 
   def test_disks_should_return_http_200

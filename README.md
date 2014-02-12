@@ -22,13 +22,15 @@ Ruby dependencies:
 ------------------
 (core 2.0.0-p247)
 
-- rack-test v0.6.2
-
+Runtime gems:
 - sinatra v1.4.4
   - rack v1.5.2
   - tilt v1.4.1
   - rack-protection v1.5.0
+
+Testing gems:
 - test-unit v2.5.5
+- minitest v5.2.3
 
 Front web server (development)
 ------------------------------
