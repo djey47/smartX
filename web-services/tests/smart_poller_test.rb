@@ -5,8 +5,7 @@ require 'minitest/autorun'
 class SmartPollerTest < MiniTest::Test
 
   def setup
-    @smart_poller = SmartPoller.new
-    @smart_poller.system_poller = SystemPollerMock.new
+    @smart_poller = SmartPoller.new(SystemPollerMock.new)
   end
 
   def teardown

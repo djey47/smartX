@@ -6,10 +6,8 @@ require_relative '../rupees/model/disk_list'
 class SmartPoller
 
   # To inject different pollers (real and mock)
-  @system_poller = SystemPoller.new
-  attr_accessor :system_poller
-
-  def initialize
+  def initialize(system_poller = SystemPoller.new)
+    @system_poller = system_poller
     @logger = Logger.new(STDOUT)
     @logger.level = Logger::DEBUG
   end
