@@ -15,6 +15,20 @@ class SmartPoller
   def get_disks
     disk_list = DiskList.new
 
+    # Extracts devices
+    devices = @system_poller.get_devices
+    devices_by_disk_ids = Hash.new
+    disk_id = 0
+    devices.split('\n').each do |line|
+      raw_device = line.split(":")[0]
+
+      if (not raw_device.nil?)
+        disk_id = disk_id + 1
+        @logger.debug( raw_device )
+        devices_by_disk_ids.store(disk_id, raw_device)
+      end
+    end
+
     # Extracts sizes
     sizes_megabytes = @system_poller.get_sizes_megabytes
     sizes_by_disk_ids = Hash.new
@@ -46,9 +60,26 @@ class SmartPoller
       end
     end
 
+    # Extracts temperatures
+    temperatures_by_disk_ids = Hash.new
+    disk_id = 0
+    devices_by_disk_ids.values.each do |device|
+      disk_id = disk_id + 1
+      temperature_celisus = @system_poller.get_temperature_celsius(device)
+      #@logger.debug( temperature_celisus )
+      raw_temperature = temperature_celisus.split(' ')[3]
+      raw_temperature = Integer(raw_temperature, 10)
+      @logger.debug( raw_temperature )
+      temperatures_by_disk_ids.store(disk_id, raw_temperature)
+    end
+
     # Populates diks list
     (1..disk_id).each { |id|
-      disk_list.disks << DiskDetails.new(id=id, model=models_by_disk_ids[id], size_gigabytes=sizes_by_disk_ids[id])
+      disk_list.disks << DiskDetails.new(id = id,
+                                         model = models_by_disk_ids[id],
+                                         size_gigabytes = sizes_by_disk_ids[id],
+                                         device = devices_by_disk_ids[id],
+                                         temperature_celisus = temperatures_by_disk_ids[id],)
     }
     disk_list
   end

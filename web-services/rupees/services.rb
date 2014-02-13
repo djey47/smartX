@@ -26,9 +26,9 @@ class Services < Sinatra::Base
     # Fake data
     disk_list = DiskList.new
     disk_list.last_received = '1 year'
-    disk_list.disks << DiskDetails.new(1, 'ST3000VN000', 2794.52, 25, 'OK', 'Good' )
-    disk_list.disks << DiskDetails.new(2, 'ST2000DL003', 1863.02, 27, 'OK', 'Bad' )
-    disk_list.disks << DiskDetails.new(3, 'ST2000DL003', 1863.02, 26, 'KO', 'Critical' )
+    disk_list.disks << DiskDetails.new(1, 'ST3000VN000', 2794.52, '/dev/sda', 25, 'OK', 'Good' )
+    disk_list.disks << DiskDetails.new(2, 'ST2000DL003', 1863.02, '/dev/sdb', 27, 'OK', 'Bad' )
+    disk_list.disks << DiskDetails.new(3, 'ST2000DL003', 1863.02, '/dev/sdc', 26, 'KO', 'Critical' )
     disk_list
   end
 
