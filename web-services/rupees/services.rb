@@ -64,7 +64,8 @@ class Services < Sinatra::Base
   #config
   set :port, 4600
   set :show_exceptions, true
-  set :environment, :development
+  set :environment, :production
+  # set :environment, :development
 
   #Heartbeat
   get '/' do
