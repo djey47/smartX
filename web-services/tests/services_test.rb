@@ -26,14 +26,10 @@ class ServicesTest  < MiniTest::Test
     assert_equal(200, last_response.status)
   end
 
-  def test_disks_should_return_http_200
+  def test_disks_should_return_http_200_and_proper_json
     get '/disks.json'
 
     assert_equal(200, last_response.status)
-  end
-
-  def test_disks_should_return_proper_json
-    get '/disks.json'
 
     parsed_object = JSON.parse(last_response.body, @json_parser_opts)
     assert(parsed_object[:last_received].is_a? String)
@@ -46,14 +42,10 @@ class ServicesTest  < MiniTest::Test
     assert_equal(404, last_response.status)
   end
 
-  def test_smart_should_return_http_200
+  def test_smart_should_return_http_200_and_proper_json
     get '/smart.json/1'
 
     assert_equal(200, last_response.status)
-  end
-
-  def test_smart_should_return_proper_json
-    get '/smart.json/1'
 
     parsed_object = JSON.parse(last_response.body, @json_parser_opts)
     assert(parsed_object[:items].is_a? Array)
