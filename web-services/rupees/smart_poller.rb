@@ -1,6 +1,7 @@
 # smart_poller.rb - utilities to gather system and SMART info
 
 require_relative 'system_poller'
+require_relative '../rupees/model/disk_details'
 require_relative '../rupees/model/disk_list'
 
 class SmartPoller
@@ -19,12 +20,12 @@ class SmartPoller
     devices = @system_poller.get_devices
     devices_by_disk_ids = Hash.new
     disk_id = 0
-    devices.split('\n').each do |line|
-      raw_device = line.split(":")[0]
+    devices.split("\n").each do |line|
+      raw_device = line.split(':')[0]
 
-      if (not raw_device.nil?)
+      unless raw_device.nil?
         disk_id = disk_id + 1
-        @logger.debug( raw_device )
+        @logger.debug(raw_device)
         devices_by_disk_ids.store(disk_id, raw_device)
       end
     end
@@ -33,15 +34,15 @@ class SmartPoller
     sizes_megabytes = @system_poller.get_sizes_megabytes
     sizes_by_disk_ids = Hash.new
     disk_id = 0
-    sizes_megabytes.split('\n').each do |line|
+    sizes_megabytes.split("\n").each do |line|
       raw_size = line.split(':')[1]
 
-      if (not raw_size.nil?)
+      unless raw_size.nil?
         disk_id = disk_id + 1
         raw_size = raw_size.split('MBytes')[0]
         raw_size = (Float(raw_size.lstrip.rstrip) / 1024).round(4)
-        @logger.debug( raw_size )
-        sizes_by_disk_ids.store(disk_id, raw_size )
+        @logger.debug(raw_size)
+        sizes_by_disk_ids.store(disk_id, raw_size)
       end
     end
 
@@ -49,13 +50,13 @@ class SmartPoller
     model_numbers = @system_poller.get_model_numbers
     models_by_disk_ids = Hash.new
     disk_id = 0
-    model_numbers.split('\n').each do |line|
+    model_numbers.split("\n").each do |line|
       raw_model_number = line.split(':')[1]
 
-      if (not raw_model_number.nil?)
+      unless raw_model_number.nil?
         disk_id = disk_id + 1
         raw_model_number = raw_model_number.lstrip.rstrip
-        @logger.debug( raw_model_number )
+        @logger.debug(raw_model_number)
         models_by_disk_ids.store(disk_id, raw_model_number)
       end
     end
@@ -66,7 +67,7 @@ class SmartPoller
     devices_by_disk_ids.values.each do |device|
       disk_id = disk_id + 1
       temperature_celisus = @system_poller.get_temperature_celsius(device)
-      #@logger.debug( temperature_celisus )
+      # @logger.debug( temperature_celisus )
       raw_temperature = temperature_celisus.split(' ')[3]
       raw_temperature = Integer(raw_temperature, 10)
       @logger.debug( raw_temperature )
