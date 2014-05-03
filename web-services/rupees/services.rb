@@ -3,6 +3,7 @@
 require 'sinatra'
 require 'json'
 require 'logger'
+require_relative 'smart_poller'
 require_relative 'model/disk_list'
 require_relative 'model/disk_details'
 require_relative 'model/smart_details'
@@ -14,6 +15,7 @@ class Services < Sinatra::Base
   def initialize
     @logger = Logger.new(STDOUT)
     @logger.level = Logger::INFO
+    @smart_poller = SmartPoller.new
     #Required for correct Sinatra init
     super
   end
@@ -23,13 +25,7 @@ class Services < Sinatra::Base
 
     check_origin
 
-    # Fake data
-    disk_list = DiskList.new
-    disk_list.last_received = '1 year'
-    disk_list.disks << DiskDetails.new(1, 'ST3000VN000', 2794.52, '/dev/sda', 25, 'OK', 'Good' )
-    disk_list.disks << DiskDetails.new(2, 'ST2000DL003', 1863.02, '/dev/sdb', 27, 'OK', 'Bad' )
-    disk_list.disks << DiskDetails.new(3, 'ST2000DL003', 1863.02, '/dev/sdc', 26, 'KO', 'Critical' )
-    disk_list
+    @smart_poller.get_disks
   end
 
   def get_smart_details(disk_id)
