@@ -57,7 +57,7 @@ class SystemPoller
   end
 
   def get_temperature_celsius(device)
-    cmd = 'smartctl -A | grep "Temperature_Celsius"'
+    cmd = "smartctl -A #{device} | grep \"Temperature_Celsius\""
 
     @logger.info("[SystemPoller][get_temperature_celsius] Executing #{cmd}...")
     out = `#{cmd}`
