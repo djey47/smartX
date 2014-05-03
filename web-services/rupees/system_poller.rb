@@ -25,17 +25,50 @@ class SystemPoller
   end
 
   def get_model_numbers
-    # hdparm -I /dev/sd? | grep "Model Number:"
+    cmd = 'hdparm -I /dev/sd? | grep "Model Number:"'
 
+    @logger.info("[SystemPoller][get_model_numbers] Executing #{cmd}...")
+    out = `#{cmd}`
+
+    # Command failures
+    if $?.to_i != 0
+      @logger.error("[SystemPoller][get_model_numbers] Command terminated abnormally: #{$?}")
+      raise('Unable to get disk model numbers properly')
+    end
+
+    @logger.info("[SystemPoller][get_model_numbers] Command ended. Output: #{out}")
+    out
   end
 
   def get_sizes_megabytes
-    # hdparm -I /dev/sd? | grep "1024:"
+    cmd = 'hdparm -I /dev/sd? | grep "1024:"'
 
+    @logger.info("[SystemPoller][get_sizes_megabytes] Executing #{cmd}...")
+    out = `#{cmd}`
+
+    # Command failures
+    if $?.to_i != 0
+      @logger.error("[SystemPoller][get_sizes_megabytes] Command terminated abnormally: #{$?}")
+      raise('Unable to get disk sizes properly')
+    end
+
+    @logger.info("[SystemPoller][get_sizes_megabytes] Command ended. Output: #{out}")
+    out
   end
 
   def get_temperature_celsius(device)
-    # smartctl -A | grep "Temperature_Celsius"
+    cmd = 'smartctl -A | grep "Temperature_Celsius"'
 
+    @logger.info("[SystemPoller][get_temperature_celsius] Executing #{cmd}...")
+    out = `#{cmd}`
+
+    # Command failures
+    if $?.to_i != 0
+      @logger.error("[SystemPoller][get_temperature_celsius] Command terminated abnormally: #{$?}")
+      raise('Unable to get disk temperatures properly')
+    end
+
+    @logger.info("[SystemPoller][get_temperature_celsius] Command ended. Output: #{out}")
+    out
   end
 end
