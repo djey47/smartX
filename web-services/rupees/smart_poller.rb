@@ -67,7 +67,7 @@ class SmartPoller
     devices_by_disk_ids.values.each do |device|
       disk_id = disk_id + 1
       temperature_celisus = @system_poller.get_temperature_celsius(device)
-      # @logger.debug( temperature_celisus )
+      @logger.debug( temperature_celisus )
       raw_temperature = temperature_celisus.split(' ')[3]
       raw_temperature = Integer(raw_temperature, 10)
       @logger.debug( raw_temperature )
