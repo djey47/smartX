@@ -12,12 +12,13 @@ require_relative 'model/errors/unknown_disk_error'
 
 class Services < Sinatra::Base
 
-  def initialize
+  def initialize(smart_poller = SmartPoller.new)
+    @smart_poller = smart_poller
+
     @logger = Logger.new(STDOUT)
     @logger.level = Logger::INFO
-    @smart_poller = SmartPoller.new
-    #Required for correct Sinatra init
-    super
+
+    super #Required for correct Sinatra init
   end
 
   def get_disks

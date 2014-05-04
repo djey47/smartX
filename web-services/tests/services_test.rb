@@ -12,11 +12,12 @@ class ServicesTest  < MiniTest::Test
 
   # Required to provide tested application instance
   def app
-    Services
+    Services.new(@smart_poller)
   end
 
   # Runs before each test
   def setup
+    @smart_poller = SmartPollerMock.new
     @json_parser_opts = {:symbolize_names => true}
   end
 
@@ -49,5 +50,12 @@ class ServicesTest  < MiniTest::Test
 
     parsed_object = JSON.parse(last_response.body, @json_parser_opts)
     assert(parsed_object[:items].is_a? Array)
+  end
+end
+
+# Used for testing : mocks system calls
+class SmartPollerMock
+  def get_disks
+    DiskList.new
   end
 end
