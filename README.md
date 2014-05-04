@@ -7,6 +7,7 @@ In cases of virtualized environments, S.M.A.R.T information cannot be processed 
 Side note: application parses following Linux command outputs to get information :
 - hdparm -I /dev/sd?
 - smartctl <to be defined>
+Thus, those will fail under Windows development environments.
 
 Modules:
 --------
@@ -22,21 +23,21 @@ To test services, execute :
     ruby ./web-services/tests/services_test.rb
 
 - web-ui : front-end to display usable and useful information about HDD status.
-To be deployed on a web server : developed under nginx, produced under apache.
+To be deployed on a web server : developed under nginx. Wroks with Apache as well.
 
 Ruby dependencies:
 ------------------
-(core 2.0.0-p247)
+(core 1.9.3)
 
 Runtime gems:
-- sinatra v1.4.4
+- sinatra v1.4.5
   - rack v1.5.2
-  - tilt v1.4.1
-  - rack-protection v1.5.0
+  - tilt v2.0.1
+  - rack-protection v1.5.3
 
 Testing gems:
 - test-unit v2.5.5
-- minitest v5.2.3
+- minitest v5.3.3
 
 Front web server (development)
 ------------------------------
@@ -56,5 +57,3 @@ To run server, execute following command :
 Then, send signals to handle it :
 
     nginx -s {stop|quit|reload|reopen}
-
-
