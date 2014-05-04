@@ -18,7 +18,7 @@ class Services < Sinatra::Base
     @logger = Logger.new(STDOUT)
     @logger.level = Logger::INFO
 
-    super #Required for correct Sinatra init
+    super() #Required for correct Sinatra init
   end
 
   def get_disks
