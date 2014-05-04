@@ -13,14 +13,13 @@ class SmartX
   end
 
   def run
-    all_threads = []
-    all_threads << Thread.new {
+    server_thread = Thread.new {
       @logger.info('[SmartX] Starting HTTP server...')
       Services.run!
     }
     @logger.info('[SmartX] Ready to rumble!')
-    # Waiting for all threads to terminate
-    all_threads.each { |thr| thr.join }
+    # Waiting for server thread to terminate
+    server_thread.join
   end
 
   def stop
