@@ -1,43 +1,20 @@
 smartX
 ======
 
-Displays HDD's S.M.A.R.T. information from Synology DSM systems.
-In cases of virtualized environments, S.M.A.R.T information cannot be processed due to missing features in drivers; this project aims at solving this.
+Displays HDD's S.M.A.R.T. information from REST services.
+In cases of virtualized environments, S.M.A.R.T information cannot be processed due to missing features in drivers; this project and pi-control (https://github.com/djey47/pi-control) aim at solving this.
 
-Side note: application parses following Linux command outputs to get information :
-- hdparm -I /dev/sd?
-- smartctl <to be defined>
-Thus, those will fail under Windows development environments.
+Side note: smartX is just front side of a whole system. It needs to communicate with REST services (e.g pi-control) to get wanted data.
 
 Modules:
 --------
-- web-services : REST web services to provide S.M.A.R.T. information.
-Current TCP port is 4600.
-
-To start from command line, execute:
-
-    ruby ./web-services/rupees/smart_x.rb
-
-To test services, execute :
-
-    ruby ./web-services/tests/services_test.rb
-
 - web-ui : front-end to display usable and useful information about HDD status.
 To be deployed on a web server : developed under nginx. Wroks with Apache as well.
 
-Ruby dependencies:
-------------------
-(core 1.9.3)
-
-Runtime gems:
-- sinatra v1.4.5
-  - rack v1.5.2
-  - tilt v2.0.1
-  - rack-protection v1.5.3
-
-Testing gems:
-- test-unit v2.5.5
-- minitest v5.3.3
+Needed datasources:
+-------------------
+- hard disk list (id, model, size, device, temperature, SMART status, i-status)
+- detailed SMART status : set of indicators for a particular hard disk (id, label, raw_data, status, thershold, value worst)
 
 Front web server (development)
 ------------------------------
