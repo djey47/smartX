@@ -1,11 +1,18 @@
 //noinspection JSUnresolvedVariable,JSUnresolvedFunction
 var diskListViewModel = {
+    refreshing: ko.observable(false),
+
     refreshFrequency: ko.observable('?'),
+
+    refreshIntervalId: 0,
 
     disks: ko.observableArray([]),
 
     fetch: function() {
+        diskListViewModel.refreshing(true);
         $.getJSON(SETTINGS.webServicesUrl + "/control/esxi/disks.json", function(data) {
+            diskListViewModel.refreshing(false);
+
             diskListViewModel.disks.removeAll();
             $.each(data.disks, function(index, disk){
                 diskListViewModel.disks.push(disk);
@@ -17,7 +24,10 @@ var diskListViewModel = {
     showSmartDetails: function(disk) {
         smartDetailsViewModel.items.removeAll();
         smartDetailsViewModel.currentDisk(disk);
-        smartDetailsViewModel.fetch();
+
+        // To refresh automatically
+        smartDetailsViewModel.refreshIntervalId = invokeAndRepeat(smartDetailsViewModel.fetch, SETTINGS.refreshIntervalSeconds * 1000);
+
         $("#smartPopup").modal("show");
     },
 
@@ -34,12 +44,20 @@ var diskListViewModel = {
 
 //noinspection JSUnresolvedFunction,JSUnresolvedVariable
 var smartDetailsViewModel = {
+    refreshing: ko.observable(false),
+
+    refreshIntervalId: 0,
+
     currentDisk: ko.observable({model: ''}),
 
     items: ko.observableArray([]),
 
     fetch: function() {
+        smartDetailsViewModel.refreshing(true);
+
         $.getJSON(SETTINGS.webServicesUrl + "/control/esxi/disk/" + smartDetailsViewModel.currentDisk().id + "/smart.json", function(data) {
+            smartDetailsViewModel.refreshing(false);
+
             smartDetailsViewModel.items.removeAll();
             //noinspection JSUnresolvedVariable
             $.each(data.smart.items, function(index, item){
@@ -54,8 +72,8 @@ ko.applyBindings(diskListViewModel, $("#mainPage")[0]);
 //noinspection JSUnresolvedVariable,JSUnresolvedFunction
 ko.applyBindings(smartDetailsViewModel, $("#smartPopup")[0]);
 
-// To refresh automatically
-invokeAndRepeat(diskListViewModel.fetch, SETTINGS.refreshIntervalSeconds * 1000);
-
 // Static values
 diskListViewModel.refreshFrequency(SETTINGS.refreshIntervalSeconds);
+
+// To refresh automatically
+diskListViewModel.refreshIntervalId = invokeAndRepeat(diskListViewModel.fetch, SETTINGS.refreshIntervalSeconds * 1000);
