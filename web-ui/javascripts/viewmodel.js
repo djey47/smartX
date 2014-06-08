@@ -58,4 +58,4 @@ ko.applyBindings(smartDetailsViewModel, $("#smartPopup")[0]);
 invokeAndRepeat(diskListViewModel.fetch, SETTINGS.refreshIntervalSeconds * 1000);
 
 // Static values
-diskListViewModel.refreshFrequency(SETTINGS.refreshIntervalSeconds)
+diskListViewModel.refreshFrequency(SETTINGS.refreshIntervalSeconds);
