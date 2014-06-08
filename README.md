@@ -11,10 +11,21 @@ Modules:
 - web-ui : front-end to display usable and useful information about HDD status.
 To be deployed on a web server : developed under nginx. Wroks with Apache as well.
 
+To configure this webapp, have a look at **javascripts/settings.js**:
+
+    // Please modify this file to (re)configure smartX
+    var SETTINGS = {
+        // URL of services (e.g pi-control module)
+        webServicesUrl: 'http://' + location.hostname + ':4600',
+    
+        // Refresh disk list every ? secs
+        refreshIntervalSeconds: 15
+    };
+
 Needed datasources:
 -------------------
-- hard disk list (id, model, size, device, temperature, SMART status, i-status)
-- detailed SMART status : set of indicators for a particular hard disk (id, label, raw_data, status, thershold, value worst)
+- hard disk list (id, model, size, device, i-status)
+- detailed SMART status : set of indicators for a particular hard disk (id, label, threshold, value, worst)
 
 Front web server (development)
 ------------------------------
