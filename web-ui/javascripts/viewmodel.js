@@ -19,6 +19,7 @@ var diskListViewModel = {
 
     // Called from binding: click on row
     showSmartDetails: function(disk) {
+        smartDetailsViewModel.items.removeAll();
         smartDetailsViewModel.currentDisk(disk);
         smartDetailsViewModel.fetch();
         $("#smartPopup").modal("show");
