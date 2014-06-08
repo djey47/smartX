@@ -1,17 +1,11 @@
 //noinspection JSUnresolvedVariable,JSUnresolvedFunction
 var diskListViewModel = {
-    //noinspection JSUnresolvedVariable,JSUnresolvedFunction
-    lastReceived: ko.observable(''),
-
     refreshFrequency: ko.observable('?'),
 
     disks: ko.observableArray([]),
 
     fetch: function() {
         $.getJSON(SETTINGS.webServicesUrl + "/control/esxi/disks.json", function(data) {
-            /** @namespace data.last_received */
-//            diskListViewModel.lastReceived(data.last_received);
-
             diskListViewModel.disks.removeAll();
             $.each(data.disks, function(index, disk){
                 diskListViewModel.disks.push(disk);
@@ -47,6 +41,7 @@ var smartDetailsViewModel = {
     fetch: function() {
         $.getJSON(SETTINGS.webServicesUrl + "/control/esxi/disk/" + smartDetailsViewModel.currentDisk().id + "/smart.json", function(data) {
             smartDetailsViewModel.items.removeAll();
+            //noinspection JSUnresolvedVariable
             $.each(data.smart.items, function(index, item){
                 smartDetailsViewModel.items.push(item);
             });
