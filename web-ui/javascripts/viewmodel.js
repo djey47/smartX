@@ -3,6 +3,8 @@ var diskListViewModel = {
     //noinspection JSUnresolvedVariable,JSUnresolvedFunction
     lastReceived: ko.observable(''),
 
+    refreshFrequency: ko.observable('?'),
+
     disks: ko.observableArray([]),
 
     fetch: function() {
@@ -59,3 +61,6 @@ ko.applyBindings(smartDetailsViewModel, $("#smartPopup")[0]);
 
 // To refresh automatically
 invokeAndRepeat(diskListViewModel.fetch, SETTINGS.refreshIntervalSeconds * 1000);
+
+// Static values
+diskListViewModel.refreshFrequency(SETTINGS.refreshIntervalSeconds)
