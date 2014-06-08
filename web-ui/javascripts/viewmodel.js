@@ -6,9 +6,9 @@ var diskListViewModel = {
     disks: ko.observableArray([]),
 
     fetch: function() {
-        $.getJSON(WEB_SERVICES_URL + "/disks.json", function(data) {
+        $.getJSON(SETTINGS.webServicesUrl + "/control/esxi/disks.json", function(data) {
             /** @namespace data.last_received */
-            diskListViewModel.lastReceived(data.last_received);
+//            diskListViewModel.lastReceived(data.last_received);
 
             diskListViewModel.disks.removeAll();
             $.each(data.disks, function(index, disk){
@@ -42,9 +42,9 @@ var smartDetailsViewModel = {
     items: ko.observableArray([]),
 
     fetch: function() {
-        $.getJSON(WEB_SERVICES_URL + "/smart.json/" + smartDetailsViewModel.currentDisk().id, function(data) {
+        $.getJSON(SETTINGS.webServicesUrl + "/control/esxi/disk/" + smartDetailsViewModel.currentDisk().id + "/smart.json", function(data) {
             smartDetailsViewModel.items.removeAll();
-            $.each(data.items, function(index, item){
+            $.each(data.smart.items, function(index, item){
                 smartDetailsViewModel.items.push(item);
             });
         })
@@ -57,4 +57,4 @@ ko.applyBindings(diskListViewModel, $("#mainPage")[0]);
 ko.applyBindings(smartDetailsViewModel, $("#smartPopup")[0]);
 
 // To refresh automatically
-invokeAndRepeat(diskListViewModel.fetch, REFRESH_INTERVAL_SECS * 1000);
+invokeAndRepeat(diskListViewModel.fetch, SETTINGS.refreshIntervalSeconds * 1000);

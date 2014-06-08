@@ -1,7 +1,3 @@
-// Constants
-var WEB_SERVICES_URL = "http://" + location.hostname + ":4600";
-var REFRESH_INTERVAL_SECS = 10;
-
 // Utilities
 function invokeAndRepeat(toInvoke, intervalMilliseconds) {
     toInvoke();
