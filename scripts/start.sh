@@ -1,3 +1,0 @@
-#! /bin/sh
-echo Starting smartX web services...
-ruby ./web-services/rupees/smart_x.rb
