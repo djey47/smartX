@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0">
-    <meta name="description" content="smartX: S.M.A.R.T. information from Synology DSM">
+    <meta name="description" content="smartX: S.M.A.R.T. information from ESXi server">
     <meta name="author" content="djey">
     <meta charset="UTF-8">
 
@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
-    <title>smartX</title>
+    <title>smartX - home</title>
 </head>
 <body>
 <div class="container">
@@ -25,19 +25,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">smartX</a>
+            <a class="navbar-brand" href="smartx.html">smartX</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="about.html">About</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 
     <!-- Main component -->
     <div id="mainPage" class="container">
-        <h3><span class="label label-primary">S.M.A.R.T. information from ESXi server</span></h3>
+        <div class="row">
+            <h3><span class="label label-primary">S.M.A.R.T. information from ESXi server</span></h3>
+        </div>
         <!--<p>-->
             <!--<em>-->
                 <!--<span data-bind="visible: lastReceived() == ''">-->
@@ -124,12 +126,9 @@
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
-    </div><!-- /.modal --></div>
+    </div><!-- /.modal -->
+</div>
 
-<!-- Templates -->
-<script id="aboutTemplate" type="template/javascript">
-
-</script>
 
 <!-- Scripting -->
 <script src="lib/jquery-2.0.3.min.js"></script>
