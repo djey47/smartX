@@ -60,11 +60,11 @@
         <div class="row">
             &nbsp;
         </div>
+        <div class="row">
+            <span class="label label-default" data-bind="visible: refreshing">Refreshing, please wait...</span>
+        </div>
 
         <div class="table-responsive">
-            <div class="row">
-                <span class="label label-default" data-bind="visible: refreshing" >Refreshing disk list, please wait...</span>
-            </div>
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -108,15 +108,16 @@
                 </div>
 
                 <div class="modal-body">
-                   <span class="label label-info">
-                       Disk: (<span data-bind="text: currentDisk().id"></span>)&nbsp;<span data-bind="text: currentDisk().model"></span>
-                   </span>
+                    <div class="row">
+                        <span class="label label-default" data-bind="visible: refreshing">Refreshing, please wait...</span>
+                    </div>
+                    <div class="row">
+                       <span class="label label-info">
+                           Disk: (<span data-bind="text: currentDisk().id"></span>)&nbsp;<span data-bind="text: currentDisk().model"></span>
+                       </span>
+                    </div>
 
                     <div class="table-responsive">
-                        <div class="row">
-                            <span class="label label-default" data-bind="visible: refreshing">Refreshing, please wait...</span>
-                        </div>
-
                         <table class="table table-striped">
                             <thead>
                             <tr>
