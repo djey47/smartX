@@ -35,7 +35,7 @@ Host configuration is as follows :
 
     root   /path/to/project/web-ui;
     location / {
-        index  smartx.html;
+        index index.html;
     }
 
 To run server, execute following command :
