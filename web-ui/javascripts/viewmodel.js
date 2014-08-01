@@ -8,6 +8,7 @@ var diskListViewModel = {
 
     disks: ko.observableArray([]),
 
+    // Called from timer
     fetch: function() {
         diskListViewModel.refreshing(true);
         $.getJSON(SETTINGS.webServicesUrl + "/control/esxi/disks.json", function(data) {
@@ -56,16 +57,20 @@ var smartDetailsViewModel = {
         smartDetailsViewModel.refreshing(true);
 
         $.getJSON(SETTINGS.webServicesUrl + "/control/esxi/disk/" + smartDetailsViewModel.currentDisk().id + "/smart.json", function(data) {
-            smartDetailsViewModel.refreshing(false);
+            /** @namespace data.smart */
 
-            smartDetailsViewModel.items.removeAll();
-            //noinspection JSUnresolvedVariable
             $.each(data.smart.items, function(index, item){
                 smartDetailsViewModel.items.push(item);
             });
+
+            smartDetailsViewModel.refreshing(false);
+            smartDetailsViewModel.items.removeAll();
         })
     }
 };
+
+//Load config
+smartxSettings.load();
 
 //noinspection JSUnresolvedVariable,JSUnresolvedFunction
 ko.applyBindings(diskListViewModel, $("#mainPage")[0]);
