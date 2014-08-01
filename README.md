@@ -11,25 +11,27 @@ Modules:
 - web-ui : front-end to display usable and useful information about HDD status.
 To be deployed on a web server : developed under nginx. Wroks with Apache as well.
 
-To configure this webapp, have a look at **javascripts/settings.js**:
+To configure this webapp, have a look at **web-ui/conf/smartx.json**:
 
-    // Please modify this file to (re)configure smartX
-    var SETTINGS = {
-        // URL of services (e.g pi-control module)
-        webServicesUrl: 'http://' + location.hostname + ':4600',
+    {
+    	"description" : "Please modify below to (re)configure smartX",
     
-        // Refresh disk list every ? secs
-        refreshIntervalSeconds: 15
-    };
+    	"webServicesPort" : "4601",
+    	"refreshIntervalSeconds" : "15"
+    }
 
-Needed datasources:
--------------------
-- hard disk list (id, model, size, device, i-status)
-- detailed SMART status : set of indicators for a particular hard disk (id, label, threshold, value, worst)
+Needed datasource:
+------------------
+This web app will send Ajax requests to following REST services (See [pi-control API](https://github.com/djey47/pi-control/wiki/API-reference)):
+
+- hard disk list (id, model, size, device, i-status): **disks.json**
+- detailed SMART status : set of indicators for a particular hard disk (id, label, threshold, value, worst): **disk/[disk id]/smart.json**
+
+Target URL for REST services is as following : **http://[current hostname]:[webServicesPort]/control/esxi/[service]**
 
 Front web server (development)
 ------------------------------
-(nginx 1.5.10)
+(nginx 1.5.10+)
 
 Host configuration is as follows :
 
