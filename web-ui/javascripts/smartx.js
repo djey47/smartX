@@ -36,6 +36,5 @@ function extractBrand(diskModel) {
  */
 var diskBrands = {
 	ST:"Seagate Technology",
-	WD:"Western Digital",
-	SSD:"Unknown (SSD)"
+	WD:"Western Digital"
 };
