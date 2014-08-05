@@ -40,7 +40,18 @@ var diskListViewModel = {
                 return celsiusToFahrenheit(tempCelsius);
             }
         }, this);
-    }
+    },
+
+	// Called from binding: computed
+	brand: function(driveModel) {
+		//noinspection JSUnresolvedFunction,JSUnresolvedVariable
+		return ko.computed({
+			read: function () {
+				return extractBrand(driveModel);
+			}
+		}, this);
+	}
+
 };
 
 //noinspection JSUnresolvedFunction,JSUnresolvedVariable
