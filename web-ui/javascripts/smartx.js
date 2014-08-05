@@ -20,7 +20,7 @@ function celsiusToFahrenheit(celsiusTemp) {
 * Returns disk brand from full model information
 */
 function extractBrand(diskModel) {
-	var regex = "^([A-Z]+)[A-Z0-9]+$";
+	var regex = "^([A-Z]+)[A-Z0-9]*$";
 	var brandInitials = diskModel.match(regex)[1];
 	var diskBrand = diskBrands[brandInitials];
 
