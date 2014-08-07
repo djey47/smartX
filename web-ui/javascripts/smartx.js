@@ -40,3 +40,46 @@ var diskBrands = {
 	WD : "Western Digital",
 	_  : "Unknown:"
 };
+
+/*
+ * Returns CSS class to use when encountering specified status
+ */
+function getStatusLabelClass(status) {
+
+	var specializedClass;
+
+	switch (status) {
+
+	case "OK" :
+		specializedClass = "label-success";
+		break;
+
+	case "KO" :
+		specializedClass = "label-danger";
+		break;
+
+	case "WARN" :
+		specializedClass = "label-warning";
+		break;
+
+	default:
+		specializedClass = "label-default";
+	}
+
+	return "label " + specializedClass;
+}
+
+/*
+ * Returns status label to use when encountering specified status
+ */
+function getStatusLabel(status) {
+
+	switch(status) {
+
+	case "UNAVAIL" :
+		return "?";
+
+	default :
+		return status;
+	}
+}
