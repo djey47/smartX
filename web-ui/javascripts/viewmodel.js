@@ -11,11 +11,19 @@ var diskListViewModel = {
     // Called from timer
     fetch: function() {
         diskListViewModel.refreshing(true);
-        $.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disks.json", function(data) {
+
+        $.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disks.json", function(diskListData) {
             diskListViewModel.refreshing(false);
 
             diskListViewModel.disks.removeAll();
-            $.each(data.disks, function(index, disk){
+
+            $.each(diskListData.disks, function(index, disk){
+
+				//Request smart data for this disk
+				$.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disk/" + disk.id +"/smart.json", function(diskSmartData) {
+					disk.smart = diskSmartData.smart;
+				});
+
                 diskListViewModel.disks.push(disk);
             });
         })
@@ -24,10 +32,8 @@ var diskListViewModel = {
     // Called from binding: click on row
     showSmartDetails: function(disk) {
         smartDetailsViewModel.items.removeAll();
-        smartDetailsViewModel.currentDisk(disk);
 
-        // To refresh automatically
-        smartDetailsViewModel.refreshIntervalId = invokeAndRepeat(smartDetailsViewModel.fetch, smartxSettings.get().refreshIntervalSeconds * 1000);
+		smartDetailsViewModel.get(disk);
 
         $("#smartPopup").modal("show");
     },
@@ -56,27 +62,18 @@ var diskListViewModel = {
 
 //noinspection JSUnresolvedFunction,JSUnresolvedVariable
 var smartDetailsViewModel = {
-    refreshing: ko.observable(false),
-
-    refreshIntervalId: 0,
-
     currentDisk: ko.observable({model: ''}),
 
     items: ko.observableArray([]),
 
-    fetch: function() {
-        smartDetailsViewModel.refreshing(true);
+    get: function(disk) {
+		smartDetailsViewModel.currentDisk(disk);
 
-        $.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disk/" + smartDetailsViewModel.currentDisk().id + "/smart.json", function(data) {
-            /** @namespace data.smart */
-
-            $.each(data.smart.items, function(index, item){
-                smartDetailsViewModel.items.push(item);
-            });
-
-            smartDetailsViewModel.refreshing(false);
-            smartDetailsViewModel.items.removeAll();
-        })
+		if (disk.smart != null) {
+			$.each(disk.smart.items, function(index, item){
+				smartDetailsViewModel.items.push(item);
+			});
+		}
     }
 };
 
