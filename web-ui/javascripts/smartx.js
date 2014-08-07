@@ -25,16 +25,18 @@ function extractBrand(diskModel) {
 	var diskBrand = diskBrands[brandInitials];
 
 	if(diskBrand) {
-		return diskBrands[brandInitials];
+		return diskBrand;
 	} else {
-		return "Unknown (" + brandInitials +")";
+		return diskBrands["_"] + brandInitials;
 	}
 }
-/**
- * Represents all known disk brands per initals
- * @type {{ST: string, WD: string, SSD: string}}
+/*
+ * Represents all known disk brands per initials
  */
 var diskBrands = {
-	ST:"Seagate Technology",
-	WD:"Western Digital"
+	HDS: "HGST",
+	ST : "Seagate Technology",
+	DT : "Toshiba",
+	WD : "Western Digital",
+	_  : "Unknown:"
 };
