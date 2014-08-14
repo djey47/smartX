@@ -83,3 +83,24 @@ function getStatusLabel(status) {
 		return status;
 	}
 }
+
+/*
+ * Provides temperature in Celsius degrees from disk_id
+ */
+function getTemperatureCelsius(diskId) {
+	var disk = diskListViewModel.disks()[diskId-1];
+	var tempValue = disk.smart.items[8].value;
+
+	//TODO convert normalized value upon brand
+
+	return tempValue;
+}
+
+/*
+ * Provides temperature in Fahrenheit degrees from disk_id
+ */
+function getTemperatureFahrenheit(diskId) {
+	var tempCelsius = getTemperatureCelsius(diskId);
+
+	return celsiusToFahrenheit(tempCelsius);
+}

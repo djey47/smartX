@@ -74,8 +74,10 @@
 					<td data-bind="text: model"></td>
                     <td data-bind="text: revision"></td>
                     <td><span data-bind="text: size_gigabytes"></span>&nbsp;GB</td>
-                    <td><span class="label label-default">WIP</span>
-                        <!--<span data-bind="text: temperature_celsius"></span>°C&nbsp;/&nbsp;<span data-bind="text: diskListViewModel.temperature_fahrenheit($data.temperature_celsius)"></span>°F-->
+                    <td>
+						<span class="label label-default">
+                        	<span data-bind="text: diskListViewModel.temperature_celsius($data.id)"></span>°C&nbsp;/&nbsp;<span data-bind="text: diskListViewModel.temperature_fahrenheit($data.id)"></span>°F
+						</span>
                     </td>
                     <td><span class="label label-default">WIP</span></td>
                 </tr>

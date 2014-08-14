@@ -20,25 +20,23 @@ var diskListViewModel = {
 
 			var disk_ids = "";
 			$.each(diskListData.disks, function(index, disk) {
-				//Builds disk list for SMART resquest
+				//Builds disk list for SMART request
 				disk_ids = disk_ids.concat((index+1).toString());
 
 				if (index < diskListData.disks.length - 1) {
 					disk_ids = disk_ids.concat(',');
 				}
-
-				//Updates model with disk list
-				diskListViewModel.disks.push(disk);
 			});
 
 			//Requests SMART data for these disks
 			$.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disks/" + disk_ids +"/smart.json", function(diskSmartData) {
 				/** @namespace diskSmartData.disks_smart */
 				$.each(diskSmartData.disks_smart, function(index, smartData){
-					//Updates model with SMART data
-					/** @namespace smartData.disk_smart */
-					diskListViewModel.disks()[index].smart = smartData.disk_smart;
-					diskListViewModel.disks.valueHasMutated();
+					var disk = diskListData.disks[index];
+					disk.smart = smartData.smart;
+
+					//Updates model with disk list
+					diskListViewModel.disks.push(disk);
 				});
 			});
 		})
@@ -54,14 +52,24 @@ var diskListViewModel = {
     },
 
     // Called from binding: computed
-    temperature_fahrenheit: function (tempCelsius) {
+    temperature_celsius: function (diskId) {
         //noinspection JSUnresolvedFunction,JSUnresolvedVariable
         return ko.computed({
             read: function () {
-                return celsiusToFahrenheit(tempCelsius);
+                return getTemperatureCelsius(diskId);
             }
         }, this);
     },
+
+	// Called from binding: computed
+	temperature_fahrenheit: function (diskId) {
+		//noinspection JSUnresolvedFunction,JSUnresolvedVariable
+		return ko.computed({
+			read: function () {
+				return getTemperatureFahrenheit(diskId);
+			}
+		}, this);
+	},
 
 	// Called from binding: computed
 	brand: function(driveModel) {
