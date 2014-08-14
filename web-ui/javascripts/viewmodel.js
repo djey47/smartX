@@ -12,21 +12,36 @@ var diskListViewModel = {
     fetch: function() {
         diskListViewModel.refreshing(true);
 
+		//Requests disk list
         $.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disks.json", function(diskListData) {
-            diskListViewModel.refreshing(false);
+			diskListViewModel.refreshing(false);
 
             diskListViewModel.disks.removeAll();
 
-            $.each(diskListData.disks, function(index, disk){
+			var disk_ids = "";
+			$.each(diskListData.disks, function(index, disk) {
+				//Builds disk list for SMART resquest
+				disk_ids = disk_ids.concat((index+1).toString());
 
-				//Request smart data for this disk
-				$.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disk/" + disk.id +"/smart.json", function(diskSmartData) {
-					disk.smart = diskSmartData.smart;
+				if (index < diskListData.disks.length - 1) {
+					disk_ids = disk_ids.concat(',');
+				}
+
+				//Updates model with disk list
+				diskListViewModel.disks.push(disk);
+			});
+
+			//Requests SMART data for these disks
+			$.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disks/" + disk_ids +"/smart.json", function(diskSmartData) {
+				/** @namespace diskSmartData.disks_smart */
+				$.each(diskSmartData.disks_smart, function(index, smartData){
+					//Updates model with SMART data
+					/** @namespace smartData.disk_smart */
+					diskListViewModel.disks()[index].smart = smartData.disk_smart;
+					diskListViewModel.disks.valueHasMutated();
 				});
-
-                diskListViewModel.disks.push(disk);
-            });
-        })
+			});
+		})
     },
 
     // Called from binding: click on row
