@@ -88,7 +88,13 @@ function getStatusLabel(status) {
  * Provides temperature in Celsius degrees from disk_id
  */
 function getTemperatureCelsius(diskId) {
+
 	var disk = diskListViewModel.disks()[diskId-1];
+	// To handle case of empty disk list in model (when refreshing).
+	if (!disk) {
+		return '';
+	}
+
 	var tempValue = disk.smart.items[8].value;
 
 	//TODO convert normalized value upon brand
