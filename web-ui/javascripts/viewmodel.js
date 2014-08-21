@@ -79,8 +79,24 @@ var diskListViewModel = {
 				return extractBrand(driveModel);
 			}
 		}, this);
-	}
+	},
 
+	// Called from binding: computed
+	global_status: function(diskId) {
+		//noinspection JSUnresolvedFunction,JSUnresolvedVariable
+		return ko.computed({
+			read: function () {
+				var disk = diskListViewModel.disks()[diskId-1];
+				// To handle case of empty disk list in model (when refreshing).
+				if (!disk) {
+					return '';
+				}
+
+				/** @namespace disk.smart.i_status */
+				return disk.smart.i_status;
+			}
+		}, this);
+	}
 };
 
 //noinspection JSUnresolvedFunction,JSUnresolvedVariable
