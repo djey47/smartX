@@ -85,6 +85,21 @@ function getStatusLabel(status) {
 }
 
 /*
+ * Provides normalized temperature from disk_id
+ */
+function getTemperatureNormalized(diskId) {
+
+	var disk = diskListViewModel.disks()[diskId-1];
+	// To handle case of empty disk list in model (when refreshing).
+	if (!disk) {
+		return '';
+	}
+
+	// Item #8 is temperature according to ESXI... guaranteed ?
+	return disk.smart.items[8].value;
+}
+
+/*
  * Provides temperature in Celsius degrees from disk_id
  */
 function getTemperatureCelsius(diskId) {
@@ -95,9 +110,13 @@ function getTemperatureCelsius(diskId) {
 		return '';
 	}
 
-	var tempValue = disk.smart.items[8].value;
+	var tempValue = getTemperatureNormalized(diskId);
+	var brand = extractBrand(disk.model);
 
-	//TODO convert normalized value upon brand
+	// WESTERN DIGITAL: 40C <=> 107N
+	if (brand == diskBrands["WD"]) {
+		tempValue = (tempValue * 40 / 107).toFixed(1);
+	}
 
 	return tempValue;
 }
