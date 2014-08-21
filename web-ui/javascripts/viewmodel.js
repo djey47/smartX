@@ -96,6 +96,22 @@ var diskListViewModel = {
 				return disk.smart.i_status;
 			}
 		}, this);
+	},
+
+	// Called from binding: computed
+	temp_status: function(diskId) {
+		//noinspection JSUnresolvedFunction,JSUnresolvedVariable
+		return ko.computed({
+			read: function () {
+				var disk = diskListViewModel.disks()[diskId-1];
+				// To handle case of empty disk list in model (when refreshing).
+				if (!disk) {
+					return '';
+				}
+
+				return disk.smart.items[8].status;
+			}
+		}, this);
 	}
 };
 
