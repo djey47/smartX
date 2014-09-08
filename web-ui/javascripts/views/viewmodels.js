@@ -18,15 +18,16 @@ var diskListViewModel = {
 
             diskListViewModel.disks.removeAll();
 
+			//Builds disk list for SMART request
 			var disk_ids = "";
-			$.each(diskListData.disks, function(index, disk) {
-				//Builds disk list for SMART request
-				disk_ids = disk_ids.concat((index+1).toString());
+			for(var id = 1 ; id <= diskListData.disks.length ; id++) {
 
-				if (index < diskListData.disks.length - 1) {
+				disk_ids = disk_ids.concat(id.toString());
+
+				if (id < diskListData.disks.length) {
 					disk_ids = disk_ids.concat(',');
 				}
-			});
+			}
 
 			//Requests SMART data for these disks
 			$.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disks/" + disk_ids +"/smart.json", function(diskSmartData) {
