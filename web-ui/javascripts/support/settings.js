@@ -25,7 +25,7 @@ var smartxSettings = {
 				/** @namespace data.refreshIntervalSeconds */
 				smartxSettings.settings = {
 					// URL of services (e.g pi-control module)
-					webServicesUrl: 'http://' + location.hostname + ':' + data.webServicesPort,
+					webServicesUrl: 'http://' + location.host + '/pi-control/',
 
 					// Refresh disk list every ? secs
 					refreshIntervalSeconds: data.refreshIntervalSeconds

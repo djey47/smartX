@@ -13,7 +13,7 @@ var diskListViewModel = {
         diskListViewModel.refreshing(true);
 
 		//Requests disk list
-        $.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disks.json", function(diskListData) {
+        $.getJSON(smartxSettings.get().webServicesUrl + "esxi/disks.json", function(diskListData) {
 			diskListViewModel.refreshing(false);
 
             diskListViewModel.disks.removeAll();
@@ -30,7 +30,7 @@ var diskListViewModel = {
 			}
 
 			//Requests SMART data for these disks
-			$.getJSON(smartxSettings.get().webServicesUrl + "/control/esxi/disks/" + disk_ids +"/smart.json", function(diskSmartData) {
+			$.getJSON(smartxSettings.get().webServicesUrl + "esxi/disks/" + disk_ids +"/smart.json", function(diskSmartData) {
 				/** @namespace diskSmartData.disks_smart */
 				$.each(diskSmartData.disks_smart, function(index, smartData){
 					var disk = diskListData.disks[index];
