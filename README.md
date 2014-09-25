@@ -8,15 +8,14 @@ Side note: smartX is just front side of a whole system. It needs to communicate 
 
 Modules:
 --------
-- web-ui : front-end to display usable and useful information about HDD status.
-To be deployed on a web server : developed under nginx. Wroks with Apache as well.
+**web-ui** is a front-end to display useful information about HDD status.
+To be deployed on a web server : developed under nginx.
 
 To configure this webapp, have a look at **web-ui/conf/smartx.json**:
 
     {
     	"description" : "Please modify below to (re)configure smartX",
     
-    	"webServicesPort" : "4601",
     	"refreshIntervalSeconds" : "15"
     }
 
@@ -24,21 +23,17 @@ Needed datasource:
 ------------------
 This web app will send Ajax requests to following REST services (See [pi-control API](https://github.com/djey47/pi-control/wiki/API-reference)):
 
-- hard disk list (id, model, size, device, i-status): **disks.json**
-- detailed SMART status : set of indicators for a particular hard disk (id, label, threshold, value, worst): **disk/[disk id]/smart.json**
+Target URL for REST services is as following : 
+**http://[current host]/pi-control/[service]**
 
-Target URL for REST services is as following : **http://[current hostname]:[webServicesPort]/control/esxi/[service]**
+- hard disk list (id, model, size, device, i-status): **esxi/disks.json**
+- detailed SMART status : set of indicators for a particular hard disk (id, label, threshold, value, worst): **esxi/disk/[disk id]/smart.json**
+
+Link to services is achieved by nginx, as reverse-proxy. Corresponding configuration is as described in **server/site.default** file.   
 
 Front web server (development)
 ------------------------------
 (nginx 1.5.10+)
-
-Host configuration is as follows :
-
-    root   /path/to/project/web-ui;
-    location / {
-        index index.html;
-    }
 
 To run server, execute following command :
 

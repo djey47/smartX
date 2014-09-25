@@ -1,6 +1,5 @@
 {
 	"description" : "Please modify below to (re)configure smartX",
 
-	"webServicesPort" : "4601",
 	"refreshIntervalSeconds" : "15"
 }

@@ -21,7 +21,6 @@ var smartxSettings = {
 			dataType: 'json',
 
 			success: function (data) {
-				/** @namespace data.webServicesPort */
 				/** @namespace data.refreshIntervalSeconds */
 				smartxSettings.settings = {
 					// URL of services (e.g pi-control module)
