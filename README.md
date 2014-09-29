@@ -33,7 +33,9 @@ Link to services is achieved by nginx, as reverse-proxy. Corresponding configura
 
 Front web server (development)
 ------------------------------
-(nginx 1.5.10+)
+(developed and tested onto nginx 1.5.10+)
+
+Server configuration is as described in **server/site.default**
 
 To run server, execute following command :
 
