@@ -1,0 +1,17 @@
+/* Space out content a bit */
+body {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+/* some nice centered entries */
+.entry-home {
+    padding: 5px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+
+    i {
+        padding-left: 10px;
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "smartX-web-ui",
+  "version": "0.0.0",
+  "homepage": "https://github.com/djey47/smartX",
+  "authors": [
+    "djey <j.canler@gmail.com>"
+  ],
+  "description": "smartX Web Interface",
+  "main": "smartx.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "requirejs": "^2.1.11",
+    "knockout.js": "^3.0.0",
+    "knockout.validation": "^1.0.2",
+    "bootstrap-sass": "^3.0.2"
+  }
+}
