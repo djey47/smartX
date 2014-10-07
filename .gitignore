@@ -18,6 +18,9 @@ node_modules/
 dist/
 bower_components/
 
+# YEOMAN
+.yo-rc.json
+
 # YARD artifacts
 .yardoc
 _yardoc
