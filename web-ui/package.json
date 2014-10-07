@@ -8,9 +8,9 @@
     "test": "grunt qunit"
   },
   "author": {
-    "name": "Author Name",
+    "name": "djey",
     "email": "email@domain.com",
-    "url": "http://example.com"
+    "url": "https://github.com/djey47/smartX"
   },
   "licenses": [
     {
