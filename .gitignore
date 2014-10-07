@@ -18,6 +18,10 @@ node_modules/
 dist/
 bower_components/
 
+# YEOMAN
+.yo-rc.json
+.editorconfig
+
 # YARD artifacts
 .yardoc
 _yardoc
