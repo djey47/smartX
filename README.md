@@ -9,7 +9,38 @@ Side note: smartX is just front side of a whole system. It needs to communicate 
 Modules:
 --------
 **web-ui** is a front-end to display useful information about HDD status.
-To be deployed on a web server : developed under nginx.
+
+To be deployed on a web server (developed under compass + nginx).
+
+
+Needed datasource:
+------------------
+This web app will send Ajax requests to following REST services (see [pi-control API](https://github.com/djey47/pi-control/wiki/API-reference)):
+
+Target URL for REST services is as following : 
+**http://[current host]/pi-control/[service]**
+
+Link to services is achieved by nginx, as reverse-proxy. Corresponding configuration is as described in **server/site.default** file.   
+
+Here is a service overview:
+
+- hard disk list (id, model, size, device, i-status): **esxi/disks.json**
+- detailed SMART status : set of indicators for a particular hard disk (id, label, threshold, value, worst): **esxi/disk/[disk id]/smart.json**
+
+
+
+Installing from scratch
+-----------------------
+(as there's no release, yet).
+
+First you'll need to have **node.js** and **yeoman** ready to go (see [website](http://yeoman.io)).
+
+Then, from a console, issue following commands :
+
+    cd web-ui
+    grunt
+
+... a **web-ui/dist** directory will be created, with all files required for website to run - except configuration that you'll need to include by yourself.
 
 To configure this webapp, have a look at **web-ui/conf/smartx.json**:
 
@@ -19,23 +50,14 @@ To configure this webapp, have a look at **web-ui/conf/smartx.json**:
     	"refreshIntervalSeconds" : "15"
     }
 
-Needed datasource:
-------------------
-This web app will send Ajax requests to following REST services (See [pi-control API](https://github.com/djey47/pi-control/wiki/API-reference)):
+Next step is to deploy it on a [NGINX](http://nginx.org/) web server instance.
 
-Target URL for REST services is as following : 
-**http://[current host]/pi-control/[service]**
 
-- hard disk list (id, model, size, device, i-status): **esxi/disks.json**
-- detailed SMART status : set of indicators for a particular hard disk (id, label, threshold, value, worst): **esxi/disk/[disk id]/smart.json**
-
-Link to services is achieved by nginx, as reverse-proxy. Corresponding configuration is as described in **server/site.default** file.   
-
-Front web server (development)
-------------------------------
+Running on a web server
+-----------------------
 (developed and tested onto nginx 1.5.10+)
 
-Server configuration is as described in **server/site.default**
+Server configuration is as described in **server/site.default** file.
 
 To run server, execute following command :
 
