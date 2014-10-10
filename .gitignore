@@ -1,31 +1,13 @@
-*.gem
-*.rbc
-.bundle
-.config
 .idea
-coverage
-InstalledFiles
-lib/bundler/man
-pkg
-rdoc
-spec/reports
-test/tmp
-test/version_tmp
-tmp
-nohup.out
-.sass-cache/
-node_modules/
-dist/
-bower_components/
 
 # YEOMAN
 .yo-rc.json
 .editorconfig
+bower_components/
+dist/
+node_modules/
+tmp
 
 # SASS
+.sass-cache/
 web-ui/app/assets/css/
-
-# YARD artifacts
-.yardoc
-_yardoc
-doc/
