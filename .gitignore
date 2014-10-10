@@ -23,7 +23,7 @@ bower_components/
 .editorconfig
 
 # SASS
-assets/scss/main.scss
+web-ui/app/assets/css/
 
 # YARD artifacts
 .yardoc
