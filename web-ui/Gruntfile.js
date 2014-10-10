@@ -260,10 +260,10 @@ module.exports = function (grunt) {
     },
     open: {
       server: {
-        path: 'http://localhost:' + SERVER_PORT
+        path: 'http://localhost:' + SERVER_PORT + '/smartx.html'
       },
       test: {
-        path: 'http://localhost:' + TEST_PORT
+        path: 'http://localhost:' + TEST_PORT + '/smartx.html'
       }
     }
   });
