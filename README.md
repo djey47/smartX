@@ -33,7 +33,7 @@ Installing from scratch
 -----------------------
 (as there's no release, yet).
 
-First you'll need to have **node.js** and **yeoman** ready to go (see [website](http://yeoman.io)).
+First you'll need to have **node.js**, **npm** and **yeoman** ready to go (see [website](http://yeoman.io)).
 
 Then, from a console, issue following commands :
 
