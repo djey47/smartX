@@ -22,6 +22,9 @@ bower_components/
 .yo-rc.json
 .editorconfig
 
+# SASS
+assets/scss/main.scss
+
 # YARD artifacts
 .yardoc
 _yardoc
