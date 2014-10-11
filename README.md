@@ -28,16 +28,21 @@ Here is a service overview:
 - detailed SMART status : set of indicators for a particular hard disk (id, label, threshold, value, worst): **esxi/disk/[disk id]/smart.json**
 
 
-
 Installing from scratch
 -----------------------
 (as there's no release, yet).
 
 First you'll need to have **node.js**, **npm** and **yeoman** ready to go (see [website](http://yeoman.io)).
 
+Also, make sure **ruby** and **compass** gem are correctly installed.
+
+I assume you've cloned this git repository, already.
+
 Then, from a console, issue following commands :
 
-    cd web-ui
+    cd <your git repos directory>/smartX/web-ui
+    npm install
+    bower install
     grunt
 
 ... a **web-ui/dist** directory will be created, with all files required for website to run - except configuration that you'll need to include by yourself.
