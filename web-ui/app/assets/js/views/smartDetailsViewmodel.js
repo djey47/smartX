@@ -1,12 +1,12 @@
 'use strict';
 
-//noinspection JSUnresolvedVariable,JSUnresolvedFunction
+//noinspection JSUnresolvedVariable,JSUnresolvedFunction,JSHint
 define([	'jquery',
 			'knockout',
             '../../../assets/js/views/style.js'
 		], function ($, ko, Style) {
 
-	//noinspection JSUnresolvedFunction,JSUnresolvedVariable
+    //noinspection JSUnresolvedFunction,JSUnresolvedVariable,JSUnusedGlobalSymbols
 	return {
 	    currentDisk: ko.observable({model: ''}),
 
@@ -17,20 +17,21 @@ define([	'jquery',
 
             SmartDetailsViewModel.currentDisk(disk);
 
-			if (disk.smart != null) {
-				$.each(disk.smart.items, function(index, item){
+			if (disk.smart) {
+				//noinspection JSUnresolvedFunction
+                $.each(disk.smart.items, function(index, item){
                     SmartDetailsViewModel.items.push(item);
 				});
 			}
     	},
 
         // Called from binding: computed
-        status_css_class: function(status) {
+        statusCssClass: function(status) {
             return Style.getStatusLabelCssClass(status);
         },
 
         // Called from binding: computed
-        status_label_text: function(status) {
+        statusLabelText: function(status) {
             return Style.getStatusLabelText(status);
         }
 	};

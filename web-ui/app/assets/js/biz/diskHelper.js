@@ -3,6 +3,7 @@
  */
 'use strict';
 
+//noinspection JSUnresolvedVariable,JSUnresolvedFunction,JSHint
 define([], function() {
     return {
 
@@ -10,22 +11,22 @@ define([], function() {
          * Represents all known disk brands per initials
          */
         diskBrands: {
-            HDS: "HGST",
-            ST : "Seagate Technology",
-            DT : "Toshiba",
-            WD : "Western Digital",
-            _  : "Unknown:"
+            HDS: 'HGST',
+            ST : 'Seagate Technology',
+            DT : 'Toshiba',
+            WD : 'Western Digital',
+            _  : 'Unknown:'
         },
 
         extractBrand: function(diskModel) {
-            var regex = "^([A-Z]+)[A-Z0-9]*$";
+            var regex = /^([A-Z]+)[A-Z0-9]*$/g;
             var brandInitials = diskModel.match(regex)[1];
             var diskBrand = this.diskBrands[brandInitials];
 
             if(diskBrand) {
                 return diskBrand;
             } else {
-                return this.diskBrands["_"] + brandInitials;
+                return this.diskBrands._ + brandInitials;
             }
         },
 
@@ -59,7 +60,7 @@ define([], function() {
             var brand = this.extractBrand(disk.model);
 
             // WESTERN DIGITAL: 40C <=> 107N
-            if (brand == this.diskBrands["WD"]) {
+            if (brand === this.diskBrands.WD) {
                 tempValue = (tempValue * 40 / 107).toFixed(1);
             }
 

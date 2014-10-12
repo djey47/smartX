@@ -1,6 +1,6 @@
 'use strict';
 
-//noinspection JSUnresolvedVariable,JSUnresolvedFunction
+//noinspection JSUnresolvedVariable,JSUnresolvedFunction,JSHint
 define([	'jquery',
 			'knockout',
             '../../../assets/js/views/smartDetailsViewmodel.js',
@@ -9,7 +9,8 @@ define([	'jquery',
             '../../../assets/js/biz/diskHelper.js'
 		], function ($, ko, SmartDetailsViewModel, Style, Settings, DiskHelper) {
 
-	return {
+    //noinspection JSHint,JSUnresolvedFunction,JSUnusedGlobalSymbols
+    return {
 	    refreshing: ko.observable(false),
 
 	    refreshFrequency: ko.observable('?'),
@@ -24,25 +25,29 @@ define([	'jquery',
             DiskListViewModel.refreshing(true);
 
 			//Requests disk list
-	        $.getJSON(Settings.get().webServicesUrl + "esxi/disks.json", function(diskListData) {
+	        //noinspection JSUnresolvedFunction
+            $.getJSON(Settings.get().webServicesUrl + 'esxi/disks.json', function(diskListData) {
                 DiskListViewModel.refreshing(false);
 
+                //noinspection JSUnresolvedFunction
                 DiskListViewModel.disks.removeAll();
 
 				//Builds disk list for SMART request
-				var disk_ids = "";
+				var diskIds = '';
 				for(var id = 1 ; id <= diskListData.disks.length ; id++) {
 
-					disk_ids = disk_ids.concat(id.toString());
+					diskIds = diskIds.concat(id.toString());
 
 					if (id < diskListData.disks.length) {
-						disk_ids = disk_ids.concat(',');
+						diskIds = diskIds.concat(',');
 					}
 				}
 
 				//Requests SMART data for these disks
-				$.getJSON(Settings.get().webServicesUrl + "esxi/disks/" + disk_ids +"/smart.json", function(diskSmartData) {
-					/** @namespace diskSmartData.disks_smart */
+				//noinspection JSUnresolvedFunction
+                $.getJSON(Settings.get().webServicesUrl + 'esxi/disks/' + diskIds +'/smart.json', function(diskSmartData) {
+                    //noinspection JSHint,JSUnresolvedFunction
+                    /** @namespace diskSmartData.disks_smart */
 					$.each(diskSmartData.disks_smart, function(index, smartData){
 						var disk = diskListData.disks[index];
 						disk.smart = smartData.smart;
@@ -51,28 +56,31 @@ define([	'jquery',
                         DiskListViewModel.disks.push(disk);
 					});
 				});
-			})
+			});
 	    },
 
         bindSubView: function() {
-            var smartPopup = $("#smartPopup");
+            var smartPopup = $('#smartPopup');
+            //noinspection JSUnresolvedFunction
             ko.applyBindings(SmartDetailsViewModel, smartPopup[0]);
         },
 
 	    // Called from binding: click on row
 	    showSmartDetails: function(disk) {
             //noinspection JSUnresolvedVariable,JSUnresolvedFunction
-            var smartPopup = $("#smartPopup");
+            var smartPopup = $('#smartPopup');
 
+            //noinspection JSUnresolvedFunction
             SmartDetailsViewModel.items.removeAll();
 
 			SmartDetailsViewModel.get(disk);
 
-	        smartPopup.modal("show");
+	        //noinspection JSUnresolvedFunction
+            smartPopup.modal('show');
 	    },
 
 	    // Called from binding: computed
-	    temperature_celsius: function (diskId) {
+	    temperatureCelsius: function (diskId) {
 	        //noinspection JSUnresolvedFunction,JSUnresolvedVariable
 	        return ko.computed({
 	            read: function () {
@@ -82,7 +90,7 @@ define([	'jquery',
 	    },
 
 		// Called from binding: computed
-		temperature_fahrenheit: function (diskId) {
+		temperatureFahrenheit: function (diskId) {
 			//noinspection JSUnresolvedFunction,JSUnresolvedVariable
 			return ko.computed({
 				read: function () {
@@ -105,7 +113,8 @@ define([	'jquery',
 		global_status: function(diskId) {
 			//noinspection JSUnresolvedFunction,JSUnresolvedVariable
 			return ko.computed({
-				read: function () {
+				read: function () //noinspection JSHint
+                {
 					var disk = this.disks()[diskId-1];
 					// To handle case of empty disk list in model (when refreshing).
 					if (!disk) {
@@ -119,7 +128,7 @@ define([	'jquery',
 		},
 
 		// Called from binding: computed
-		temp_status: function(diskId) {
+		tempStatus: function(diskId) {
 			//noinspection JSUnresolvedFunction,JSUnresolvedVariable
 			return ko.computed({
 				read: function () {
@@ -135,7 +144,7 @@ define([	'jquery',
 		},
 
         // Called from binding: computed
-        status_css_class: function(status) {
+        statusCssClass: function(status) {
             return Style.getStatusLabelCssClass(status);
         }
 	};

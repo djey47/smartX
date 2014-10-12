@@ -2,6 +2,7 @@
 'use strict';
 
 /* global define:true*/
+//noinspection JSUnresolvedFunction
 define([	'jquery',
             'jquery.bootstrap',
             'knockout',
@@ -16,10 +17,10 @@ define([	'jquery',
 	var invokeAndRepeat = function(toInvoke, intervalMilliseconds) {
 	    toInvoke(DiskListViewModel);
 	    return setInterval(toInvoke(DiskListViewModel), intervalMilliseconds);
-	}
+	};
 
 	//noinspection JSUnresolvedVariable,JSUnresolvedFunction
-	ko.applyBindings(DiskListViewModel, $("#mainPage")[0]);
+	ko.applyBindings(DiskListViewModel, $('#mainPage')[0]);
     DiskListViewModel.bindSubView();
 
 	// Static values

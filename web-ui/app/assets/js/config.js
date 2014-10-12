@@ -1,5 +1,6 @@
 'use strict';
 
+//noinspection JSUnresolvedVariable,JSUnresolvedFunction
 require.config({
   paths: {
     'bower_components': '../../bower_components',
@@ -25,8 +26,10 @@ require.config({
 
 // Use the debug version of knockout in development only
 /* global window:true*/
+//noinspection JSUnresolvedVariable
 if (window.knockoutBootstrapDebug) {
-  require.config({
+    //noinspection JSUnresolvedVariable,JSUnresolvedFunction
+    require.config({
     map: {
       '*': {
         'knockout': '../../bower_components/knockout.js/knockout.debug.js',
@@ -36,6 +39,8 @@ if (window.knockoutBootstrapDebug) {
   });
 }
 
+//noinspection JSUnresolvedVariable
 if (!window.requireTestMode) {
-  require(['pages/smartx'], function () { });
+  //noinspection JSUnresolvedFunction
+    require(['pages/smartx'], function () { });
 }

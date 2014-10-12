@@ -1,7 +1,10 @@
-// This script provides function to retrieve configuration from a specific JSON file.
-// Use get() function to lazy load settings
+/*
+ * This script provides function to retrieve configuration from a specific JSON file.
+ * Use get() function to lazy load settings
+ */
 'use strict';
 
+//noinspection JSUnresolvedVariable,JSUnresolvedFunction,JSHint
 define([	'jquery'
 		], function ($) {
 			
@@ -10,7 +13,7 @@ define([	'jquery'
 
 		// Loads (when needed) and returns settings
 		get:function() {
-			if (this.settings == null) {
+			if (!this.settings) {
 				this.load();
 			}
 
@@ -20,13 +23,15 @@ define([	'jquery'
 		load:function() {
 			var Settings = this;
 
-			$.ajax({
+            //noinspection JSUnresolvedFunction,JSUnusedGlobalSymbols
+            $.ajax({
 				url: 'conf/smartx.json',
 				async: false,
 				dataType: 'json',
 
 				success: function (data) {
-					/** @namespace data.refreshIntervalSeconds */
+					//noinspection JSHint
+                    /** @namespace data.refreshIntervalSeconds */
 					Settings.settings = {
 						// URL of services (e.g pi-control module)
 						webServicesUrl: 'http://' + location.host + '/pi-control/',
