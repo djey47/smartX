@@ -19,7 +19,7 @@ define([], function() {
         },
 
         extractBrand: function(diskModel) {
-            var regex = /^([A-Z]+)[A-Z0-9]*$/g;
+            var regex = /^([A-Z]+)[A-Z0-9]*$/;
             var brandInitials = diskModel.match(regex)[1];
             var diskBrand = this.diskBrands[brandInitials];
 
