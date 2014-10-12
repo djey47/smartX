@@ -4,46 +4,46 @@
 'use strict';
 
 //noinspection JSUnresolvedVariable,JSUnresolvedFunction,JSHint
-define([], function() {
-    return {
-        getStatusLabelCssClass: function(itemStatus) {
+define([], function () {
+  return {
+    getStatusLabelCssClass: function (itemStatus) {
 
-            var specializedClass;
+      var specializedClass;
 
-            switch (itemStatus) {
+      switch (itemStatus) {
 
-                case 'OK' :
-                    specializedClass = 'label-success';
-                    break;
+        case 'OK' :
+          specializedClass = 'label-success';
+          break;
 
-                case 'KO' :
-                    specializedClass = 'label-danger';
-                    break;
+        case 'KO' :
+          specializedClass = 'label-danger';
+          break;
 
-                case 'WARN' :
-                    specializedClass = 'label-warning';
-                    break;
+        case 'WARN' :
+          specializedClass = 'label-warning';
+          break;
 
-                default:
-                    specializedClass = 'label-default';
-            }
+        default:
+          specializedClass = 'label-default';
+      }
 
-            return 'label ' + specializedClass;
-        },
+      return 'label ' + specializedClass;
+    },
 
-        /*
-         * Returns status label to use when encountering specified status
-         */
-        getStatusLabelText: function(status) {
+    /*
+     * Returns status label to use when encountering specified status
+     */
+    getStatusLabelText: function (status) {
 
-            switch(status) {
+      switch (status) {
 
-                case 'UNAVAIL' :
-                    return '?';
+        case 'UNAVAIL' :
+          return '?';
 
-                default :
-                    return status;
-            }
-        }
-    };
+        default :
+          return status;
+      }
+    }
+  };
 });

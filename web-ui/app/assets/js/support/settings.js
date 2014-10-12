@@ -5,42 +5,42 @@
 'use strict';
 
 //noinspection JSUnresolvedVariable,JSUnresolvedFunction,JSHint
-define([	'jquery'
-		], function ($) {
-			
-	return {
-		settings:null,
+define([  'jquery'
+], function ($) {
 
-		// Loads (when needed) and returns settings
-		get:function() {
-			if (!this.settings) {
-				this.load();
-			}
+  return {
+    settings: null,
 
-			return this.settings;
-		},
+    // Loads (when needed) and returns settings
+    get: function () {
+      if (!this.settings) {
+        this.load();
+      }
 
-		load:function() {
-			var Settings = this;
+      return this.settings;
+    },
 
-            //noinspection JSUnresolvedFunction,JSUnusedGlobalSymbols
-            $.ajax({
-				url: 'conf/smartx.json',
-				async: false,
-				dataType: 'json',
+    load: function () {
+      var Settings = this;
 
-				success: function (data) {
-					//noinspection JSHint
-                    /** @namespace data.refreshIntervalSeconds */
-					Settings.settings = {
-						// URL of services (e.g pi-control module)
-						webServicesUrl: 'http://' + location.host + '/pi-control/',
+      //noinspection JSUnresolvedFunction,JSUnusedGlobalSymbols
+      $.ajax({
+        url: 'conf/smartx.json',
+        async: false,
+        dataType: 'json',
 
-						// Refresh disk list every ? secs
-						refreshIntervalSeconds: data.refreshIntervalSeconds
-					};
-				}
-			});
-		}
-	};
+        success: function (data) {
+          //noinspection JSHint
+          /** @namespace data.refreshIntervalSeconds */
+          Settings.settings = {
+            // URL of services (e.g pi-control module)
+            webServicesUrl: 'http://' + location.host + '/pi-control/',
+
+            // Refresh disk list every ? secs
+            refreshIntervalSeconds: data.refreshIntervalSeconds
+          };
+        }
+      });
+    }
+  };
 });

@@ -28,8 +28,8 @@ require.config({
 /* global window:true*/
 //noinspection JSUnresolvedVariable
 if (window.knockoutBootstrapDebug) {
-    //noinspection JSUnresolvedVariable,JSUnresolvedFunction
-    require.config({
+  //noinspection JSUnresolvedVariable,JSUnresolvedFunction
+  require.config({
     map: {
       '*': {
         'knockout': '../../bower_components/knockout.js/knockout.debug.js',
@@ -42,5 +42,6 @@ if (window.knockoutBootstrapDebug) {
 //noinspection JSUnresolvedVariable
 if (!window.requireTestMode) {
   //noinspection JSUnresolvedFunction
-    require(['pages/smartx'], function () { });
+  require(['pages/smartx'], function () {
+  });
 }
