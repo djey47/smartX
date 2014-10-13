@@ -34,7 +34,7 @@ Installing from scratch
 
 First you'll need to have **node.js**, **npm** and **yeoman** ready to go (see [website](http://yeoman.io)).
 
-Also, make sure **ruby** and **compass** gem are correctly installed.
+Also, make sure **ruby** and **compass** gem are correctly [installed](http://rvm.io/).
 
 I assume you've cloned this git repository, already.
 
@@ -64,6 +64,7 @@ Running on a web server
 ### Embedded server (with stubbed services) ###
 Type-in following command in terminal:
 
+	cd <your git repos directory>/smartX/web-ui	
 	grunt serve
 	
 ... a web server will be started with all required data sources as stubs.
