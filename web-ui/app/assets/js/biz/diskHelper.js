@@ -7,6 +7,8 @@
 define([], function () {
   return {
 
+		NOT_AVAILABLE_VALUE: 'N/A',
+
     /*
      * Represents all known disk brands per initials
      */

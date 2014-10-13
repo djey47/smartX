@@ -79,25 +79,22 @@ define([  'jquery',
       smartPopup.modal('show');
     },
 
-    // Called from binding: computed
-    temperatureCelsius: function (diskId) {
-      //noinspection JSUnresolvedFunction,JSUnresolvedVariable
-      return ko.computed({
-        read: function () {
-          return DiskHelper.getTemperatureCelsius(this, diskId);
-        }
-      }, this);
-    },
+		// Called from binding: computed
+		temperature: function (diskId) {
+			//noinspection JSUnresolvedFunction,JSUnresolvedVariable
+			return ko.computed({
+				read: function () {
+					var temperatureCelsius = DiskHelper.getTemperatureCelsius(this, diskId);
 
-    // Called from binding: computed
-    temperatureFahrenheit: function (diskId) {
-      //noinspection JSUnresolvedFunction,JSUnresolvedVariable
-      return ko.computed({
-        read: function () {
-          return DiskHelper.getTemperatureFahrenheit(this, diskId);
-        }
-      }, this);
-    },
+					if (temperatureCelsius !== DiskHelper.NOT_AVAILABLE_VALUE) {
+						var temperatureFahrenheit = DiskHelper.getTemperatureFahrenheit(this, diskId);
+						return temperatureCelsius + '°C / ' + temperatureFahrenheit + '°F';
+					}
+
+					return DiskHelper.NOT_AVAILABLE_VALUE;
+				}
+			}, this);
+		},
 
     // Called from binding: computed
     brand: function (driveModel) {
