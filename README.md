@@ -55,12 +55,23 @@ To configure this webapp, have a look at **web-ui/conf/smartx.json**:
     	"refreshIntervalSeconds" : "15"
     }
 
-Next step is to deploy it on a [NGINX](http://nginx.org/) web server instance.
+Next step is to deploy it on a web server instance.
 
 
 Running on a web server
 -----------------------
-(developed and tested onto nginx 1.5.10+)
+
+### Embedded server (with stubbed services) ###
+Type-in following command in terminal:
+
+	grunt serve
+	
+... a web server will be started with all required data sources as stubs.
+ 
+Stubs are located in **web-ui/app/pi-control**  and may be modified to suit your needs.
+
+### Dedicated server ###
+(developed and tested onto [NGINX](http://nginx.org/) 1.5.10+)
 
 Server configuration is as described in **server/site.default** file.
 
