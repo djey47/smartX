@@ -88,7 +88,7 @@ define([  'jquery',
 
 					if (temperatureCelsius !== DiskHelper.NOT_AVAILABLE_VALUE) {
 						var temperatureFahrenheit = DiskHelper.getTemperatureFahrenheit(this, diskId);
-						return temperatureCelsius + '°C / ' + temperatureFahrenheit + '°F';
+						return Math.floor(temperatureCelsius) + '°C / ' + Math.floor(temperatureFahrenheit) + '°F';
 					}
 
 					return DiskHelper.NOT_AVAILABLE_VALUE;

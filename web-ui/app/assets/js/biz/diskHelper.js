@@ -63,7 +63,7 @@ define([], function () {
 
       // WESTERN DIGITAL: 40C <=> 107N
       if (brand === this.diskBrands.WD) {
-        tempValue = (tempValue * 40 / 107).toFixed(1);
+        tempValue = tempValue * 40 / 107;
       }
 
       return tempValue;
@@ -82,7 +82,7 @@ define([], function () {
      * Returns fahrenheit degrees temperature from celsius degrees.
      */
     celsiusToFahrenheit: function (celsiusTemp) {
-      return (celsiusTemp * 1.8 + 32).toFixed(1);
+      return celsiusTemp * 1.8 + 32;
     }
   };
 });
