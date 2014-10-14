@@ -42,6 +42,9 @@ if (window.knockoutBootstrapDebug) {
 //noinspection JSUnresolvedVariable
 if (!window.requireTestMode) {
   //noinspection JSUnresolvedFunction
-  require(['pages/smartx'], function () {
+  require(['pages/smartx'], function (SmartXApp) {
+
+		SmartXApp.start();
+
   });
 }
