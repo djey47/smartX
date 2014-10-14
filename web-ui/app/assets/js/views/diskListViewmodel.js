@@ -27,35 +27,43 @@ define([  'jquery',
       //Requests disk list
       //noinspection JSUnresolvedFunction
       $.getJSON(Settings.get().webServicesUrl + 'esxi/disks.json', function (diskListData) {
-        DiskListViewModel.refreshing(false);
-
-        //noinspection JSUnresolvedFunction
-        DiskListViewModel.disks.removeAll();
 
         //Builds disk list for SMART request
         var diskIds = '';
-        for (var id = 1; id <= diskListData.disks.length; id++) {
 
-          diskIds = diskIds.concat(id.toString());
+				diskListData.disks.forEach(function (disk, i, disks) {
 
-          if (id < diskListData.disks.length) {
-            diskIds = diskIds.concat(',');
-          }
-        }
+					var diskId = i + 1;
 
-        //Requests SMART data for these disks
-        //noinspection JSUnresolvedFunction
-        $.getJSON(Settings.get().webServicesUrl + 'esxi/disks/' + diskIds + '/smart.json', function (diskSmartData) {
-          //noinspection JSHint,JSUnresolvedFunction
-          /** @namespace diskSmartData.disks_smart */
-          $.each(diskSmartData.disks_smart, function (index, smartData) {
-            var disk = diskListData.disks[index];
-            disk.smart = smartData.smart;
+					diskIds = diskIds.concat(diskId);
 
-            //Updates model with disk list
-            DiskListViewModel.disks.push(disk);
-          });
-        });
+					if (diskId < disks.length) {
+						diskIds = diskIds.concat(',');
+					}
+
+				});
+
+				if (diskIds !== '') {
+					//Requests SMART data for these disks
+					//noinspection JSUnresolvedFunction
+					$.getJSON(Settings.get().webServicesUrl + 'esxi/disks/' + diskIds + '/smart.json', function (diskSmartData) {
+
+						//noinspection JSUnresolvedFunction
+						DiskListViewModel.disks.removeAll();
+
+						//noinspection JSHint,JSUnresolvedFunction
+						/** @namespace diskSmartData.disks_smart */
+						diskSmartData.disks_smart.forEach(function (smartData, i) {
+							var disk = diskListData.disks[i];
+							disk.smart = smartData.smart;
+
+							//Updates model with disk list
+							DiskListViewModel.disks.push(disk);
+						});
+					});
+				}
+
+				DiskListViewModel.refreshing(false);
       });
     },
 
@@ -135,6 +143,7 @@ define([  'jquery',
             return '';
           }
 
+					/** @namespace disk.smart.items[].status */
           return disk.smart.items[8].status;
         }
       }, this);
