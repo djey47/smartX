@@ -68,23 +68,20 @@ define([  'jquery',
     },
 
     bindSubView: function () {
-      var smartPopup = $('#smartPopup');
       //noinspection JSUnresolvedFunction
-      ko.applyBindings(SmartDetailsViewModel, smartPopup[0]);
+      ko.applyBindings(SmartDetailsViewModel, $('#smartPopup')[0]);
     },
 
     // Called from binding: click on row
     showSmartDetails: function (disk) {
       //noinspection JSUnresolvedVariable,JSUnresolvedFunction
-      var smartPopup = $('#smartPopup');
-
       //noinspection JSUnresolvedFunction
-      SmartDetailsViewModel.items.removeAll();
+      if (disk) {
+        SmartDetailsViewModel.get(disk);
 
-      SmartDetailsViewModel.get(disk);
-
-      //noinspection JSUnresolvedFunction
-      smartPopup.modal('show');
+        //noinspection JSUnresolvedFunction
+        $('#smartPopup').modal('show');
+      }
     },
 
     // Called from binding: computed

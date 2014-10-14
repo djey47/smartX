@@ -16,10 +16,11 @@ define([  'jquery',
       var SmartDetailsViewModel = this;
 
       SmartDetailsViewModel.currentDisk(disk);
+      SmartDetailsViewModel.items.removeAll();
 
-      if (disk.smart) {
+      if (disk.smart && disk.smart.items) {
         //noinspection JSUnresolvedFunction
-        $.each(disk.smart.items, function (index, item) {
+        disk.smart.items.forEach(function (item) {
           SmartDetailsViewModel.items.push(item);
         });
       }
