@@ -44,7 +44,7 @@ if (!window.requireTestMode) {
   //noinspection JSUnresolvedFunction
   require(['pages/smartx'], function (SmartXApp) {
 
-		SmartXApp.start();
+    SmartXApp.start();
 
   });
 }

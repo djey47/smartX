@@ -31,39 +31,39 @@ define([  'jquery',
         //Builds disk list for SMART request
         var diskIds = '';
 
-				diskListData.disks.forEach(function (disk, i, disks) {
+        diskListData.disks.forEach(function (disk, i, disks) {
 
-					var diskId = i + 1;
+          var diskId = i + 1;
 
-					diskIds = diskIds.concat(diskId);
+          diskIds = diskIds.concat(diskId);
 
-					if (diskId < disks.length) {
-						diskIds = diskIds.concat(',');
-					}
+          if (diskId < disks.length) {
+            diskIds = diskIds.concat(',');
+          }
 
-				});
+        });
 
-				if (diskIds !== '') {
-					//Requests SMART data for these disks
-					//noinspection JSUnresolvedFunction
-					$.getJSON(Settings.get().webServicesUrl + 'esxi/disks/' + diskIds + '/smart.json', function (diskSmartData) {
+        if (diskIds !== '') {
+          //Requests SMART data for these disks
+          //noinspection JSUnresolvedFunction
+          $.getJSON(Settings.get().webServicesUrl + 'esxi/disks/' + diskIds + '/smart.json', function (diskSmartData) {
 
-						//noinspection JSUnresolvedFunction
-						DiskListViewModel.disks.removeAll();
+            //noinspection JSUnresolvedFunction
+            DiskListViewModel.disks.removeAll();
 
-						//noinspection JSHint,JSUnresolvedFunction
-						/** @namespace diskSmartData.disks_smart */
-						diskSmartData.disks_smart.forEach(function (smartData, i) {
-							var disk = diskListData.disks[i];
-							disk.smart = smartData.smart;
+            //noinspection JSHint,JSUnresolvedFunction
+            /** @namespace diskSmartData.disks_smart */
+            diskSmartData.disks_smart.forEach(function (smartData, i) {
+              var disk = diskListData.disks[i];
+              disk.smart = smartData.smart;
 
-							//Updates model with disk list
-							DiskListViewModel.disks.push(disk);
-						});
-					});
-				}
+              //Updates model with disk list
+              DiskListViewModel.disks.push(disk);
+            });
+          });
+        }
 
-				DiskListViewModel.refreshing(false);
+        DiskListViewModel.refreshing(false);
       });
     },
 
@@ -87,22 +87,22 @@ define([  'jquery',
       smartPopup.modal('show');
     },
 
-		// Called from binding: computed
-		temperature: function (diskId) {
-			//noinspection JSUnresolvedFunction,JSUnresolvedVariable
-			return ko.computed({
-				read: function () {
-					var temperatureCelsius = DiskHelper.getTemperatureCelsius(this, diskId);
+    // Called from binding: computed
+    temperature: function (diskId) {
+      //noinspection JSUnresolvedFunction,JSUnresolvedVariable
+      return ko.computed({
+        read: function () {
+          var temperatureCelsius = DiskHelper.getTemperatureCelsius(this, diskId);
 
-					if (temperatureCelsius !== DiskHelper.NOT_AVAILABLE_VALUE) {
-						var temperatureFahrenheit = DiskHelper.getTemperatureFahrenheit(this, diskId);
-						return Math.floor(temperatureCelsius) + '°C / ' + Math.floor(temperatureFahrenheit) + '°F';
-					}
+          if (temperatureCelsius !== DiskHelper.NOT_AVAILABLE_VALUE) {
+            var temperatureFahrenheit = DiskHelper.getTemperatureFahrenheit(this, diskId);
+            return Math.floor(temperatureCelsius) + '°C / ' + Math.floor(temperatureFahrenheit) + '°F';
+          }
 
-					return DiskHelper.NOT_AVAILABLE_VALUE;
-				}
-			}, this);
-		},
+          return DiskHelper.NOT_AVAILABLE_VALUE;
+        }
+      }, this);
+    },
 
     // Called from binding: computed
     brand: function (driveModel) {
@@ -143,7 +143,7 @@ define([  'jquery',
             return '';
           }
 
-					/** @namespace disk.smart.items[].status */
+          /** @namespace disk.smart.items[].status */
           return disk.smart.items[8].status;
         }
       }, this);
