@@ -12,6 +12,12 @@ Modules:
 
 To be deployed on a web server (developed under compass + nginx).
 
+Screenshots: 
+
+![Disk list](https://github.com/djey47/smartX/blob/master/web-ui/screens/disk_list.png)
+
+![Smart Info](https://github.com/djey47/smartX/blob/master/web-ui/screens/smart_info.png)
+
 
 Needed datasource:
 ------------------
