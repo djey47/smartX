@@ -34,11 +34,26 @@ Here is a service overview:
 - detailed SMART status : set of indicators for a particular hard disk (id, label, threshold, value, worst): **esxi/disk/[disk id]/smart.json**
 
 
-Installing from scratch
------------------------
-(as there's no release, yet).
+Installing
+----------
 
-First you'll need to have **node.js**, **npm** and **yeoman** ready to go (see [website](http://yeoman.io)).
+### From release
+
+(for users).
+
+Just download archive **release/smartX-webapp-....tar.gz** and extract it to a subdirectory (e.g smartX) to your NGINX root.
+
+Please see *Running on a web server -> Dedicated server* section below to set up your NGINX http server correctly.
+ 
+And go to [http://localhost/smartX/smartx.html]() with your favorite browser.
+
+That's all!
+
+### From scratch
+
+(for developers).
+
+First you'll need to have **node.js**/**npm** and **yeoman** ready to go (see [website](http://yeoman.io)).
 
 Also, make sure **ruby** and **compass** gem are correctly [installed](http://rvm.io/).
 
@@ -49,7 +64,8 @@ Then, from a console, issue following commands :
     cd <your git repos directory>/smartX/web-ui
     npm install
     bower install
-    grunt
+    npm install -g grunt-cli
+    grunt --force
 
 ... a **web-ui/dist** directory will be created, with all files required for website to run - except configuration that you'll need to include by yourself.
 
