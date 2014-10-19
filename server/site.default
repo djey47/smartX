@@ -2,6 +2,11 @@ server {
 	listen 80 default_server;
 	listen [::]:80 default_server ipv6only=on;
 
+	# Uncomment and update lines below to enable http authentication.
+	# Requires /etc/nginx/.htpasswd file to be created with credentials inside (see http://www.htaccesstools.com/htpasswd-generator/)
+    #auth_basic "Restricted web site";
+    #auth_basic_user_file .htpasswd;
+
 	# Replace with directory of deployed web app instance (web-ui contents)
 	root ~/apps/smartx/web-ui
 
