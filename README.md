@@ -41,13 +41,11 @@ Installing
 
 (for users).
 
-Just download archive **release/smartX-webapp-....tar.gz** and extract it to a subdirectory (e.g smartX) to your NGINX root.
+Just download archive ( *Raw* button click ): **release/smartX-webapp-<version>.tar.gz** and extract it to a subdirectory (e.g smartX) to your NGINX root.
 
-Please see *Running on a web server -> Dedicated server* section below to set up your NGINX http server correctly.
+Please see *Running on a web server => Dedicated server* section below to set up NGINX server correctly.
  
-And go to [http://localhost/smartX/smartx.html]() with your favorite browser.
-
-That's all!
+And go to [this URL](http://localhost/smartX/smartx.html) with your favorite browser. That's all!
 
 ### From scratch
 
@@ -83,17 +81,10 @@ Next step is to deploy it on a web server instance.
 Running on a web server
 -----------------------
 
-### Embedded server (with stubbed services) ###
-Type-in following command in terminal:
-
-	cd <your git repos directory>/smartX/web-ui	
-	grunt serve
-	
-... a web server will be started with all required data sources as stubs.
- 
-Stubs are located in **web-ui/app/pi-control**  and may be modified to suit your needs.
-
 ### Dedicated server ###
+
+(for users).
+
 (developed and tested onto [NGINX](http://nginx.org/) 1.5.10+)
 
 Server configuration is as described in **server/site.default** file.
@@ -105,3 +96,17 @@ To run server, execute following command :
 Then, send signals to handle it :
 
     nginx -s {stop|quit|reload|reopen}
+
+### Embedded server (with stubbed services) ###
+
+(for developers).
+
+Type-in following command in terminal:
+
+	cd <your git repos directory>/smartX/web-ui	
+	grunt serve
+	
+... a web server will be started with all required data sources as stubs.
+ 
+Stubs are located in **web-ui/app/pi-control**  and may be modified to suit your needs.
+
