@@ -6,7 +6,7 @@ require.config({
     'bower_components': '../../bower_components',
     'jquery': '../../bower_components/jquery/dist/jquery',
     'knockout.validation': '../../bower_components/knockout.validation/Dist/knockout.validation',
-    'jquery.bootstrap': '../../bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap'
+    'jquery.bootstrap': '../../bower_components/bootstrap-sass/assets/javascripts/bootstrap'
   },
   shim: {
     'jquery.bootstrap': {
