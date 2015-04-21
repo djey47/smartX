@@ -1,4 +1,7 @@
 language: node_js
 node_js:
   - "0.12"
-script: cd web-ui && npm install && bower install && npm install -g grunt-cli && grunt --force
+before_script:
+  - npm install -g grunt-cli
+  - npm install -g bower
+script: cd web-ui && npm install && bower install && grunt --force
