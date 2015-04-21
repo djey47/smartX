@@ -1,6 +1,8 @@
 smartX
 ======
 
+[![Build Status](https://travis-ci.org/djey47/smartX.svg?branch=master)](https://travis-ci.org/djey47/smartX)
+
 Displays HDD's S.M.A.R.T. information from REST services.
 In cases of virtualized environments, S.M.A.R.T information cannot be processed due to missing features in drivers; this project and pi-control (https://github.com/djey47/pi-control) aim at solving this.
 
