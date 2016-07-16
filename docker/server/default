@@ -1,0 +1,28 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server ipv6only=on;
+
+	# Uncomment and update lines below to enable http authentication.
+	# Requires /etc/nginx/.htpasswd file to be created with credentials inside (see http://www.htaccesstools.com/htpasswd-generator/)
+    #auth_basic "Restricted web site";
+    #auth_basic_user_file .htpasswd;
+
+	# Replace with directory of deployed web app instance (web-ui contents)
+	root /opt/smartX;
+
+	index index.html;
+
+	# Make site accessible from http://localhost/
+	server_name localhost;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
+	}
+
+	# Reverse-proxy for pi-control services
+	location /pi-control {
+		proxy_pass http://{{PI_CONTROL_SERVICES}}/control;
+	}
+}
