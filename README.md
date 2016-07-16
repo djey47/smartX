@@ -39,9 +39,28 @@ Here is a service overview:
 Installing
 ----------
 
-### From release
+### From Docker image (new!)
 
-(for users).
+On DockerHub: https://hub.docker.com/r/djey/smartx-raspbian/
+
+Get the image:
+
+    docker pull djey/smartx-raspbian
+
+To create and start a container from the image, you should try with:
+    
+    docker run -d -p 80:80 -e PI_CONTROL_ADDRESS='127.0.0.1:4600' --restart=always --name smartx djey/smartx-raspbian:0.1
+    
+Things you can customize :
+
+- Host port to access the UI: _-p [host port]:80_
+- Location to Pi-Control services: _PI_CONTROL_ADDRESS='[ip:port]'_
+- Container name, of course ^^: _--name [own fashioned name]_
+
+And head to http://[host]/smartx.html with your favorite browser. That's all!
+
+
+### From release
 
 Just download archive ( *Raw* button click ): **release/smartX-webapp-<version>.tar.gz** and extract it to a subdirectory (e.g smartX) to your NGINX root.
 
@@ -83,9 +102,7 @@ Next step is to deploy it on a web server instance.
 Running on a web server
 -----------------------
 
-### Dedicated server ###
-
-(for users).
+### Classical, dedicated server ###
 
 (developed and tested onto [NGINX](http://nginx.org/) 1.5.10+)
 
