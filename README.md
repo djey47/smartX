@@ -45,30 +45,4 @@ See [WIKI](https://github.com/djey47/smartX/wiki/Installing)
 Running on a web server (if not using Docker image)
 ---------------------------------------------------
 
-### Classical, dedicated server ###
-
-(developed and tested onto [NGINX](http://nginx.org/) 1.5.10+)
-
-Server configuration is as described in **server/site.default** file.
-
-To run server, execute following command :
-
-    nginx
-
-Then, send signals to handle it :
-
-    nginx -s {stop|quit|reload|reopen}
-
-### Embedded server (with stubbed services) ###
-
-(for developers).
-
-Type-in following command in terminal:
-
-	cd <your git repos directory>/smartX/web-ui	
-	grunt serve
-	
-... a web server will be started with all required data sources as stubs.
- 
-Stubs are located in **web-ui/app/pi-control**  and may be modified to suit your needs.
-
+See [WIKI](https://github.com/djey47/smartX/wiki/Running-on-a-web-server)
