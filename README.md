@@ -39,68 +39,11 @@ Here is a service overview:
 Installing
 ----------
 
-### From Docker image (new!)
-
-On DockerHub: https://hub.docker.com/r/djey/smartx-raspbian/
-
-Get the image:
-
-    docker pull djey/smartx-raspbian
-
-To create and start a container from the image, you should try with:
-    
-    docker run -d -p 80:80 -e PI_CONTROL_ADDRESS='127.0.0.1:4600' --restart=always --name smartx djey/smartx-raspbian:0.1
-    
-Things you can customize :
-
-- Host port to access the UI: _-p [host port]:80_
-- Location to Pi-Control services: _PI_CONTROL_ADDRESS='[ip:port]'_
-- Container name, of course ^^: _--name [own fashioned name]_
-
-And head to http://[host]/smartx.html with your favorite browser. That's all!
+See [[WIKI|https://github.com/djey47/smartX/wiki/Installing]]
 
 
-### From release
-
-Just download archive ( *Raw* button click ): **release/smartX-webapp-<version>.tar.gz** and extract it to a subdirectory (e.g smartX) to your NGINX root.
-
-Please see *Running on a web server => Dedicated server* section below to set up NGINX server correctly.
- 
-And go to [this URL](http://localhost/smartX/smartx.html) with your favorite browser. That's all!
-
-### From scratch
-
-(for developers).
-
-First you'll need to have **node.js**/**npm** and **yeoman** ready to go (see [website](http://yeoman.io)).
-
-Also, make sure **ruby** and **compass** gem are correctly [installed](http://rvm.io/).
-
-I assume you've cloned this git repository, already.
-
-Then, from a console, issue following commands :
-
-    cd <your git repos directory>/smartX/web-ui
-    npm install
-    bower install
-    npm install -g grunt-cli
-    grunt --force
-
-... a **web-ui/dist** directory will be created, with all files required for website to run - except configuration that you'll need to include by yourself.
-
-To configure this webapp, have a look at **web-ui/conf/smartx.json**:
-
-    {
-    	"description" : "Please modify below to (re)configure smartX",
-    
-    	"refreshIntervalSeconds" : "15"
-    }
-
-Next step is to deploy it on a web server instance.
-
-
-Running on a web server
------------------------
+Running on a web server (if not using Docker image)
+---------------------------------------------------
 
 ### Classical, dedicated server ###
 
