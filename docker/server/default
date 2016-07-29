@@ -7,7 +7,6 @@ server {
     #auth_basic "Restricted web site";
     #auth_basic_user_file .htpasswd;
 
-	# Replace with directory of deployed web app instance (web-ui contents)
 	root /opt/smartX;
 
 	index index.html;
