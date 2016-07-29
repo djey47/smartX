@@ -39,7 +39,7 @@ Here is a service overview:
 Installing
 ----------
 
-See [[WIKI|https://github.com/djey47/smartX/wiki/Installing]]
+See [WIKI](https://github.com/djey47/smartX/wiki/Installing)
 
 
 Running on a web server (if not using Docker image)
